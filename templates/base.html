@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+<div class="container">
+    <ul class="nav bg-info">
+        <li class="nav-item">
+            <a class="nav-link link-light" href="/">HOME</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link link-light" href="/">MEMBERS</a>
+        </li>
+    </ul>
+
+    {% block body_block %}
+    {% endblock %}
+</body>
+</html>
