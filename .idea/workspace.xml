@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64013729-3444-4eeb-b777-d1d9c66219ea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/static/css/master.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/logo.png" afterDir="false" />
       <change beforePath="$USER_HOME$/Orbital_project/.idea/Orbital_project.iml" beforeDir="false" afterPath="$USER_HOME$/Orbital_project/.idea/Orbital_project.iml" afterDir="false" />
       <change beforePath="$USER_HOME$/Orbital_project/main/HEAD" beforeDir="false" />
       <change beforePath="$USER_HOME$/Orbital_project/main/config" beforeDir="false" />
@@ -24,9 +22,8 @@
       <change beforePath="$USER_HOME$/Orbital_project/main/hooks/update.sample" beforeDir="false" />
       <change beforePath="$USER_HOME$/Orbital_project/main/info/exclude" beforeDir="false" />
       <change beforePath="$USER_HOME$/Orbital_project/web_orbital" beforeDir="false" afterPath="$USER_HOME$/Orbital_project/web_orbital" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/logo.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +43,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$USER_HOME$/Orbital_project" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
   "lastFilter": {
@@ -127,7 +124,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682082670010</updated>
-      <workItem from="1682082677345" duration="36149000" />
+      <workItem from="1682082677345" duration="36479000" />
     </task>
     <servers />
   </component>
