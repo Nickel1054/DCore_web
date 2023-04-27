@@ -1,0 +1,13 @@
+ul {
+    background-color: rgb(254, 209, 0);
+}
+
+.nav-item a {
+    color: black;
+}
+
+.nav .nav-link {
+    position: relative;
+    top: 25px;
+}
+
