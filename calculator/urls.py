@@ -16,16 +16,8 @@ Including another URLconf
 """
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
-from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.HomePage.as_view(), name='home'),
-    path('about/', views.AboutPage.as_view(), name='about'),
-    path('documentation/', views.DocumentationPage.as_view(), name='doc'),
-    # path('accounts/login', views.LoginPage.as_view(), name='login'),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('calc/',  include('calculator.urls')),
-    path('accounts/profile/', login_required(views.ProfilePage.as_view()), name='profile'),
+    path('', login_required(views.CalculatorPage.as_view()), name='home-calc'),
 ]

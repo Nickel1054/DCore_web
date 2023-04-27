@@ -12,11 +12,32 @@
 <div class="container">
     <ul class="nav bg-info">
         <li class="nav-item">
-            <a class="nav-link link-light" href="/">HOME</a>
+            <a class="navbar-brand" href={% url 'home' %}>
+                <img src='{% static "img/logo.jpg" %}' alt="D.Trading" >
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link link-light" href="/">MEMBERS</a>
+            <a class="nav-link link-light" href={% url 'about' %}>ABOUT</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link link-light" href={% url 'doc' %}>DOCUMENTATION</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link link-light" href={% url 'home-calc' %}>CALCULATOR</a>
+        </li>
+        {% if user.is_authenticated %}
+            <li class="nav-item ms-auto">
+                <a class="nav-link link-light" href={% url 'profile' %}><b>{{ user.get_username }}</b></a>
+            </li>
+            <li class="nav-item ms-auto">
+                <a class="nav-link link-light" href={% url 'logout' %}>LOGOUT</a>
+            </li>
+        {% else %}
+            <li class="nav-item ms-auto">
+                <a class="nav-link link-light" href={% url 'login' %}>LOGIN</a>
+            </li>
+        {% endif %}
+
     </ul>
 
     {% block body_block %}
