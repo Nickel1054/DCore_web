@@ -1,14 +1,22 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block body_block %}
-
-<div class="h-100 p-5 bg-light border rounded-3">
-    <h1>Calculator</h1><br>
-    <div class="row">
-        <div class="col-12">
-
+    <script type="text/javascript" src={% static 'calculator/js/calc.js' %}></script>
+    <script type="text/javascript">
+        let context = "{{ exchange|safe }}";
+    </script>
+    <div class="h-100 p-5 bg-light border rounded-3">
+        <h1>Calculator</h1><br>
+        <div class="row">
+            <div class="col-12">
+                <form id="calulator-form">
+                    {{ form.as_p }}
+                </form>
+            </div>
         </div>
     </div>
-</div>
+{#    <div hidden="hidden">#}
+{#        {{ exchange }}#}
+{#    </div>#}
 
 {% endblock %}
