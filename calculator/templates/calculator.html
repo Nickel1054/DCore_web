@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block body_block %}
+    {% load calc_extras %}
     <script type="text/javascript" src={% static 'calculator/js/calc.js' %}></script>
     <script type="text/javascript">
         let context = "{{ exchange|safe }}";
@@ -9,14 +10,31 @@
         <h1>Calculator</h1><br>
         <div class="row">
             <div class="col-12">
-                <form id="calulator-form">
-                    {{ form.as_p }}
+                {{ form.non_field_errors }}
+                <form id="calculator-form">
+                    {% csrf_token %}
+                    {{ form.subject.errors }}
+                    {% for field in form %}
+                        {% if field.html_name == 'commodity' %}
+                            <div class='select-vis' id="{{ field.html_name }}-div-id">
+                                {{ field.label_tag }}
+                                {{ field }}
+                            </div>
+
+                        {% else %}
+                            <div class='select-hid select-div' id="{{ field.html_name }}-div-id">
+                                {{ field.label_tag }}
+                                {{ field }}
+                            </div>
+
+                        {% endif %}
+                    {% endfor %}
                 </form>
             </div>
         </div>
     </div>
-{#    <div hidden="hidden">#}
-{#        {{ exchange }}#}
-{#    </div>#}
+    {#    <div hidden="hidden">#}
+    {#        {{ exchange }}#}
+    {#    </div>#}
 
 {% endblock %}

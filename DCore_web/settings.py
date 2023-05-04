@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'calculator.apps.CalculatorConfig',
     'bootstrap5',
+    # 'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+JQUERY_URL = True
