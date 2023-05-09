@@ -12,7 +12,16 @@ ul {
 
 }
 
+/*.col-12{*/
+/*    background-color: red;*/
+/*}*/
+
+/*.col-6{*/
+/*    background-color: blue;*/
+/*}*/
+
 .select-hid{
     visibility: hidden;
+    height: 0;
 }
 

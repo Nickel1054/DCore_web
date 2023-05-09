@@ -15,26 +15,33 @@
                     {% csrf_token %}
                     {{ form.subject.errors }}
                     {% for field in form %}
-                        {% if field.html_name == 'commodity' %}
-                            <div class='select-vis' id="{{ field.html_name }}-div-id">
-                                {{ field.label_tag }}
-                                {{ field }}
+                        {% if 'commodity' in field.html_name %}
+                            <div class="row">
+                                <div class='col-12 select-vis' id="{{ field.html_name }}-div-id">
+                                    {{ field.label_tag }}
+                                    {{ field }}
+                                </div>
                             </div>
-
                         {% else %}
-                            <div class='select-hid select-div' id="{{ field.html_name }}-div-id">
-                                {{ field.label_tag }}
-                                {{ field }}
-                            </div>
+                            <div class="row">
+                                <div class='col-6 select-hid select-div select-{{ field.html_name|split_class }}'
+                                     id="{{ field.html_name }}-div-id">
 
+                                    {{ field.label_tag }}
+                                    {{ field }}
+                                </div>
+                            </div>
                         {% endif %}
                     {% endfor %}
+
                 </form>
             </div>
         </div>
+        <div class="row">
+            <div class="col-4">
+                <input class="btn btn-primary" id="submit-btn" type="submit" value="Submit" disabled>
+            </div>
+        </div>
     </div>
-    {#    <div hidden="hidden">#}
-    {#        {{ exchange }}#}
-    {#    </div>#}
 
 {% endblock %}

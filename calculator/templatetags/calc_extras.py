@@ -3,6 +3,8 @@ from django import template
 register = template.Library()
 
 
-@register.filter(is_safe=True, name='get_class')
-def get_class(value):
-    return value.__class__.__name__
+@register.filter(is_safe=True, name='split_class')
+def split_class(value: str):
+    return value.replace('-', '_').split('_')[0]
+
+
