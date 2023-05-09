@@ -12,25 +12,34 @@
             <div class="col-12">
                 {{ form.non_field_errors }}
                 <form id="calculator-form">
+{#                                                                         TODO Add table here for equal heights #}
                     {% csrf_token %}
                     {{ form.subject.errors }}
                     {% for field in form %}
                         {% if 'commodity' in field.html_name %}
                             <div class="row">
-                                <div class='col-12 select-vis' id="{{ field.html_name }}-div-id">
+                                <div class='col-12 select-vis' id="{{ field.html_name|remove_number }}-div-id">
                                     {{ field.label_tag }}
                                     {{ field }}
                                 </div>
                             </div>
                         {% else %}
-                            <div class="row">
-                                <div class='col-6 select-hid select-div select-{{ field.html_name|split_class }}'
-                                     id="{{ field.html_name }}-div-id">
+                            {% if '_1' in field.html_name %}
+                                <div class="row">
+                            {% endif %}
 
-                                    {{ field.label_tag }}
-                                    {{ field }}
+                        <div class='col-6 select-hid select-div select-{{ field.html_name|split_class }} select-column-{{ field.html_name|get_column_number }}'
+                             id="{{ field.html_name }}-div-id">
+
+                            {{ field.label_tag }}
+                            {{ field }}
+
+                            {% if '_2' in field.html_name %}
                                 </div>
-                            </div>
+                            {% endif %}
+
+                        </div>
+
                         {% endif %}
                     {% endfor %}
 

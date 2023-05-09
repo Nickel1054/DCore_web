@@ -90,6 +90,20 @@ CO2 = {
     ]
 }
 
+LOAD_TYPES = [
+    ('empty', '--'), ('base', 'BASE'), ('peak', 'PEAK'),
+]
+
+PRODUCT_TYPES = {
+    'eex': [
+        [('day', 'Day'), ('weekend', 'Weekend'), ('week', 'Week'), ('month', 'Month'), ('quarter', 'Quarter'),
+         ('season', 'Season'), ('year', 'Year'), ('season', 'Season')]
+    ],
+    'icis': [
+        # TODO
+    ]
+}
+
 
 def get_hubs(source):
     load_dotenv(find_dotenv())
@@ -117,7 +131,7 @@ def get_zones_ee_spot():
 
     cur.execute('select distinct bidding_zone from bi.power_da_prices_hourly_bi order by bidding_zone;')
     zones = [item for sublist in cur.fetchall() for item in sublist]
-    zones.sort()
+    # zones.sort()
     ls = []
     for el in zones:
         ls.append((el.lower(), el))
@@ -139,6 +153,25 @@ def get_zones_futures_eex():
     return ls
 
 
+def get_product_types(source):
+    load_dotenv(find_dotenv())
+    engine = create_engine(os.getenv('ALCHEMY_CONNECTION'))
+    conn = engine.raw_connection()
+    cur = conn.cursor()
+
+    if source == 'eex':
+        cur.execute(
+            "select distinct product_type from bi.sftp_product_type_ref where length(product_type) >= 3 and product_type != 'N/A' order by product_type;")
+    elif source == 'icis':
+        cur.execute("")
+    product_types = [item for sublist in cur.fetchall() for item in sublist]
+    product_types.sort()
+    ls = []
+    for el in product_types:
+        ls.append((el.lower().replace(' ', '_'), el))
+    return 0
+
+
 if __name__ == '__main__':
-    ls = get_zones_futures_eex()
+    ls = get_product_types('eex')
     pass
