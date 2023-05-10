@@ -96,11 +96,13 @@ LOAD_TYPES = [
 
 PRODUCT_TYPES = {
     'eex': [
-        [('day', 'Day'), ('weekend', 'Weekend'), ('week', 'Week'), ('month', 'Month'), ('quarter', 'Quarter'),
+        [('day', 'Day'), ('week', 'Week'), ('weekend', 'Weekend'), ('month', 'Month'), ('quarter', 'Quarter'),
          ('season', 'Season'), ('year', 'Year'), ('season', 'Season')]
     ],
     'icis': [
-        # TODO
+        ('day', 'Day'), ('week', 'Week'), ('weekend', 'Weekend'), ('month', 'Month'), ('quarter', 'Quarter'),
+        ('season', 'Season'), ('year', 'Year'), ('gas_year', 'Gas Year')
+
     ]
 }
 
@@ -163,7 +165,7 @@ def get_product_types(source):
         cur.execute(
             "select distinct product_type from bi.sftp_product_type_ref where length(product_type) >= 3 and product_type != 'N/A' order by product_type;")
     elif source == 'icis':
-        cur.execute("")
+        cur.execute("select distinct product_type from bi.gas_icis_product;")
     product_types = [item for sublist in cur.fetchall() for item in sublist]
     product_types.sort()
     ls = []
@@ -173,5 +175,5 @@ def get_product_types(source):
 
 
 if __name__ == '__main__':
-    ls = get_product_types('eex')
+    ls = get_product_types('icis')
     pass

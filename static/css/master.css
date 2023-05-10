@@ -25,3 +25,7 @@ ul {
     height: 0;
 }
 
+select{
+    width: 50%;
+}
+

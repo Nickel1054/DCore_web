@@ -3,8 +3,13 @@
 {% block body_block %}
     {% load calc_extras %}
     <script type="text/javascript" src={% static 'calculator/js/calc.js' %}></script>
-    <script type="text/javascript">
-        let context = "{{ exchange|safe }}";
+    <script src={% static 'calculator/js/jquery-3.6.0.min.js' %}></script>
+    <link href={% static 'css/select2.min.css' %} rel="stylesheet"/>
+    <script src={% static 'calculator/js/select2.min.js' %}></script>
+    <script>
+        $(function () {
+            $("select").select2();
+        });
     </script>
     <div class="h-100 p-5 bg-light border rounded-3">
         <h1>Calculator</h1><br>
@@ -12,7 +17,7 @@
             <div class="col-12">
                 {{ form.non_field_errors }}
                 <form id="calculator-form">
-{#                                                                         TODO Add table here for equal heights #}
+                    {#                                                                         TODO Add table here for equal heights #}
                     {% csrf_token %}
                     {{ form.subject.errors }}
                     {% for field in form %}

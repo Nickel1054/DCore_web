@@ -5,12 +5,80 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64013729-3444-4eeb-b777-d1d9c66219ea" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/af.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/ar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/az.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/bg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/bn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/bs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/ca.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/cs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/da.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/de.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/dsb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/el.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/en.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/es.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/et.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/eu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/fa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/fi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/fr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/gl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/he.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/hi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/hr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/hsb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/hu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/hy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/id.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/is.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/it.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/ja.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/ka.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/km.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/ko.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/lt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/lv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/mk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/ms.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/nb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/ne.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/nl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/pl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/ps.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/pt-BR.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/pt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/ro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/ru.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/sk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/sl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/sq.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/sr-Cyrl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/sr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/sv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/th.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/tk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/tr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/uk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/vi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/zh-CN.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/i18n/zh-TW.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/jquery-3.6.0.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/select2.full.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/select2.full.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/select2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/select2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/select2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/select2.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/postgres.edMnLQ/schema/im.JA0AAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/postgres.edMnLQ/schema/im.JA0AAA.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/dict_data/form_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/dict_data/form_values.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculator/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/templates/calculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/templates/calculator.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculator/templatetags/calc_extras.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/templatetags/calc_extras.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/calculator/js/calc.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/calculator/js/calc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/master.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/master.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,12 +140,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/yura/PycharmProjects/DCore_web/calculator",
+    "last_opened_file_path": "/home/yura/PycharmProjects/DCore_web/static/calculator/js",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
@@ -89,11 +158,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/calculator/js" />
+      <recent name="$PROJECT_DIR$/static/css" />
+      <recent name="$PROJECT_DIR$/external" />
       <recent name="$PROJECT_DIR$/calculator" />
       <recent name="$PROJECT_DIR$/static/img" />
-      <recent name="$PROJECT_DIR$/templates/registration" />
-      <recent name="$PROJECT_DIR$/templates" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/calculator" />
@@ -213,6 +282,7 @@
       <workItem from="1682937980352" duration="4510000" />
       <workItem from="1683011736224" duration="70310000" />
       <workItem from="1683613867474" duration="24742000" />
+      <workItem from="1683698487371" duration="5727000" />
     </task>
     <servers />
   </component>
@@ -237,22 +307,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/calculator/dict_data/form_values.py</url>
-          <line>176</line>
+          <line>178</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/calculator/dict_data/form_values.py</url>
-          <line>122</line>
+          <line>124</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/calculator/dict_data/form_values.py</url>
-          <line>137</line>
+          <line>139</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/calculator/dict_data/form_values.py</url>
-          <line>171</line>
+          <line>173</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
@@ -261,6 +331,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DCore_web$form_values.coverage" NAME="form_values Coverage Results" MODIFIED="1683122067398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/calculator/dict_data" />
     <SUITE FILE_PATH="coverage/DCore_web$calc_extras.coverage" NAME="calc_extras Coverage Results" MODIFIED="1683273078776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/calculator/templatetags" />
-    <SUITE FILE_PATH="coverage/DCore_web$form_values__1_.coverage" NAME="form_values (1) Coverage Results" MODIFIED="1683643099848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/calculator/dict_data" />
+    <SUITE FILE_PATH="coverage/DCore_web$form_values__1_.coverage" NAME="form_values (1) Coverage Results" MODIFIED="1683698870420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/calculator/dict_data" />
   </component>
 </project>
