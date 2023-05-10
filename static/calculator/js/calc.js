@@ -42,13 +42,22 @@ function disable_button() {
     btn.setAttribute('disabled', '');
 }
 
+function clear_fields_all() {
+    let selects = document.querySelectorAll(".select-hid select");
+    selects.forEach(element => element.value = 'empty')
+    let spans_titles = document.querySelectorAll('div.select-hid .select2-selection__rendered');
+    spans_titles.forEach(element => {
+        element.textContent = '--';
+        element.title = '--';
+    })
+}
+
 function commodity_change() {
     let selected_value = document.getElementById('id_commodity').value;
     console.log(selected_value);
     if (selected_value === 'empty') {
         make_invis_all();
-        clear_fields('source');
-        clear_fields('zone');
+        clear_fields_all();
     } else if (selected_value === 'gas') {
         make_invis_all();
         let select_divs = document.querySelectorAll('[id^="exchange_gas"]');
@@ -56,8 +65,7 @@ function commodity_change() {
         for (let i = 0; i < select_divs.length; i++) {
             console.log(select_divs[i].className);
             make_vis(select_divs[i]);
-            clear_fields('source');
-            clear_fields('zone');
+            clear_fields_all();
         }
 
     } else if (selected_value === 'electricity_spot') {
@@ -67,8 +75,7 @@ function commodity_change() {
         for (let i = 0; i < select_divs.length; i++) {
             console.log(select_divs[i].className);
             make_vis(select_divs[i]);
-            clear_fields('source');
-            clear_fields('zone');
+            clear_fields_all();
         }
     } else if (selected_value === 'electricity_futures') {
         make_invis_all();
@@ -77,8 +84,7 @@ function commodity_change() {
         for (let i = 0; i < select_divs.length; i++) {
             console.log(select_divs[i].className);
             make_vis(select_divs[i]);
-            clear_fields('source');
-            clear_fields('zone');
+            clear_fields_all();
         }
     } else if (selected_value === 'co2') {
         make_invis_all();
@@ -87,8 +93,7 @@ function commodity_change() {
         for (let i = 0; i < select_divs.length; i++) {
             console.log(select_divs[i].className);
             make_vis(select_divs[i]);
-            clear_fields('source');
-            clear_fields('zone');
+            clear_fields_all();
         }
         button_change();
     }
@@ -100,16 +105,16 @@ function gas_source_change(element_id) {
     // console.log(selected_value);
     if (selected_value === 'empty') {
         make_invis_all('select-zone select-column-' + column_number);
-        clear_fields('zone', column_number);
+        clear_fields_all();
     } else if (selected_value === 'icis') {
-        clear_fields('zone', column_number);
+        clear_fields_all();
         make_invis_all('select-zone select-column-' + column_number);
         // console.log('zone_icis_gas_' + column_number + '-div-id');
         let select_div = document.getElementById('zone_icis_gas_' + column_number + '-div-id');
         console.log(select_div);
         make_vis(select_div);
     } else if (selected_value === 'eex') {
-        clear_fields('zone', column_number);
+        clear_fields_all();
         make_invis_all('select-zone select-column-' + column_number);
         let select_div = document.getElementById('zone_eex_gas_' + column_number + '-div-id');
         // console.log(select_div.className);
@@ -124,9 +129,9 @@ function ee_spot_source_change(element_id) {
     // console.log("SELECTED " + selected_value);
     if (selected_value === 'empty') {
         make_invis_all('select-zone select-column-' + column_number);
-        clear_fields('zone', column_number);
+        clear_fields_all();
     } else if (selected_value === 'spot') {
-        clear_fields('zone', column_number);
+        clear_fields_all();
         make_invis_all('select-zone select-column-' + column_number);
         let select_div = document.getElementById('zone_ee_spot_' + column_number + '-div-id');
         // console.log("CLASS" + select_div.className);
@@ -141,15 +146,15 @@ function ee_futures_source_change(element_id) {
     // console.log("SELECTED " + selected_value);
     if (selected_value === 'empty') {
         make_invis_all('select-zone select-column-' + column_number);
-        clear_fields('zone', column_number);
+        clear_fields_all();
     } else if (selected_value === 'tge') {
-        clear_fields('zone', column_number);
+        clear_fields_all();
         make_invis_all('select-zone select-column-' + column_number);
         let select_div = document.getElementById('zone_ee_futures_tge_' + column_number + '-div-id');
         // console.log("CLASS" + select_div.className);
         make_vis(select_div);
     } else if (selected_value === 'eex') {
-        clear_fields('zone', column_number);
+        clear_fields_all();
         make_invis_all('select-zone select-column-' + column_number);
         let select_div = document.getElementById('zone_ee_futures_eex_' + column_number + '-div-id');
         // console.log("CLASS" + select_div.className);
@@ -164,7 +169,7 @@ function co2_source_change(element_id) {
     // console.log("SELECTED " + selected_value);
     if (selected_value === 'empty') {
         make_invis_all('select-zone select-column-' + column_number);
-        clear_fields('zone', column_number);
+        clear_fields_all();
     } else if (selected_value === 'eex') {
         make_invis_all('select-zone select-column-' + column_number);
         let select_div = document.getElementById('zone_co2_' + column_number + '-div-id');
@@ -174,32 +179,51 @@ function co2_source_change(element_id) {
     button_change();
 }
 
-function clear_fields(field_level, column) {
-    let zones;
-    if (field_level === 'source') {
-        zones = document.querySelectorAll('.select-exchange select');
-        // console.log(zones);
-    } else if (field_level === 'zone') {
-        zones = document.querySelectorAll('.select-zone.select-column-' + column + ' select');
-    }
-    // console.log('ZONES TO CLEAR:');
-    // console.log(zones);
-    zones.forEach(element => element.value = 'empty');
-}
+
+// function clear_fields_all(field_level, column) {
+//     let zones;
+//     if (field_level === 'source') {
+//         zones = document.querySelectorAll('.select-exchange select');
+//         // console.log(zones);
+//     } else if (field_level === 'zone') {
+//         zones = document.querySelectorAll('.select-zone.select-column-' + column + ' select');
+//     } else {
+//
+//         zones = document.querySelectorAll('.select2-hidden-accessible select');
+//         // zones = document.querySelectorAll('.select-' + field_level + '.select-column-' + column + ' select');
+//     }
+//     // console.log('ZONES TO CLEAR:');
+//     console.log(zones);
+//     zones.forEach(element => element.value = 'empty');
+// }
 
 function zone_change(element_id) {
+    let zone = document.getElementById(element_id).value
     let column_number = element_id.split('_').at(-1);
-    console.log(column_number);
+    // console.log(column_number);
     let commodity = document.getElementById('id_commodity').value;
+    let source = document.getElementById('id_exchange_ee_spot_' + column_number).value;
+    clear_fields_all();
 
     if (['electricity_spot', 'electricity_futures'].indexOf(commodity) >= 0) {
-        make_invis_all('select-load select-column-' + column_number);
         let loads = document.getElementById('load_type_' + column_number + '-div-id');
-        console.log(loads);
-        make_vis(loads);
-        // console.log('Electricity selected');
+        make_invis_all('select-load select-column-' + column_number);
+
+        if (zone !== 'empty') {
+            make_invis_all('select-load select-column-' + column_number);
+            make_vis(loads);
+        }
     }
-    button_change();
+    if (zone === 'empty') {
+        make_invis_all('select-product select-column-' + column_number);
+        clear_fields_all();
+    } else {
+        make_invis_all('select-product select-column-' + column_number);
+        let select_div = document.getElementById('product_types_' + source + '_' + column_number + '-div-id');
+        // console.log("CLASS" + select_div.className);
+        make_vis(select_div);
+
+    }
 }
 
 function button_change() {
@@ -218,3 +242,4 @@ function button_change() {
     return 1;
 }
 
+// TODO bugged zone select.

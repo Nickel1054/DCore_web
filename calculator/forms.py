@@ -1,5 +1,5 @@
 from django import forms
-from .dict_data.form_values import COMMODITIES, EXCHANGE, HUBS, DAM_ZONES, FUTURES, CO2, LOAD_TYPES
+from .dict_data.form_values import COMMODITIES, EXCHANGE, HUBS, DAM_ZONES, FUTURES, CO2, LOAD_TYPES, PRODUCT_TYPES
 
 
 class CalculatorForm(forms.Form):
@@ -68,6 +68,23 @@ class CalculatorForm(forms.Form):
     ###
 
     load_type_1 = forms.ChoiceField(label='Load type 1', choices=LOAD_TYPES, initial='empty',
-                                    widget=forms.Select(attrs={'onchange': 'zone_change'}))
+                                    widget=forms.Select(attrs={'onchange': ''}))
     load_type_2 = forms.ChoiceField(label='Load type 1', choices=LOAD_TYPES, initial='empty',
-                                    widget=forms.Select(attrs={'onchange': 'zone_change'}))
+                                    widget=forms.Select(attrs={'onchange': ''}))
+
+    ###
+
+    product_types_eex_1 = forms.ChoiceField(label='Product type 1', choices=PRODUCT_TYPES['eex'], initial='empty',
+                                            widget=forms.Select(attrs={'onchange': ''}))
+    product_types_eex_2 = forms.ChoiceField(label='Product type 2', choices=PRODUCT_TYPES['eex'], initial='empty',
+                                            widget=forms.Select(attrs={'onchange': ''}))
+
+    product_types_icis_1 = forms.ChoiceField(label='Product type 1', choices=PRODUCT_TYPES['icis'], initial='empty',
+                                             widget=forms.Select(attrs={'onchange': ''}))
+    product_types_icis_2 = forms.ChoiceField(label='Product type 2', choices=PRODUCT_TYPES['icis'], initial='empty',
+                                             widget=forms.Select(attrs={'onchange': ''}))
+
+    product_types_tge_1 = forms.ChoiceField(label='Product type 1', choices=PRODUCT_TYPES['tge'], initial='empty',
+                                            widget=forms.Select(attrs={'onchange': ''}))
+    product_types_tge_2 = forms.ChoiceField(label='Product type 2', choices=PRODUCT_TYPES['tge'], initial='empty',
+                                            widget=forms.Select(attrs={'onchange': ''}))

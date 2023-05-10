@@ -74,7 +74,7 @@ DAM_ZONES = {
 
 FUTURES = {
     'tge': [
-        ('empty', '--'), ('tge', 'TGE')
+        ('empty', '--'), ('tge', 'PL')
     ],
     'eex': [
         ('empty', '--'), ('at', 'AT'), ('be', 'BE'), ('bg', 'BG'), ('ch', 'CH'), ('cz', 'CZ'), ('de', 'DE'),
@@ -96,13 +96,15 @@ LOAD_TYPES = [
 
 PRODUCT_TYPES = {
     'eex': [
-        [('day', 'Day'), ('week', 'Week'), ('weekend', 'Weekend'), ('month', 'Month'), ('quarter', 'Quarter'),
-         ('season', 'Season'), ('year', 'Year'), ('season', 'Season')]
+        ('day', 'Day'), ('week', 'Week'), ('weekend', 'Weekend'), ('month', 'Month'), ('quarter', 'Quarter'),
+        ('season', 'Season'), ('year', 'Year')
     ],
     'icis': [
         ('day', 'Day'), ('week', 'Week'), ('weekend', 'Weekend'), ('month', 'Month'), ('quarter', 'Quarter'),
         ('season', 'Season'), ('year', 'Year'), ('gas_year', 'Gas Year')
-
+    ],
+    'tge': [
+        ('week', 'Week'), ('month', 'Month'), ('quarter', 'Quarter'), ('year', 'Year')
     ]
 }
 
@@ -166,6 +168,8 @@ def get_product_types(source):
             "select distinct product_type from bi.sftp_product_type_ref where length(product_type) >= 3 and product_type != 'N/A' order by product_type;")
     elif source == 'icis':
         cur.execute("select distinct product_type from bi.gas_icis_product;")
+    elif source == 'tge':
+        cur.execute("select distinct product_type from bi.v_tge_data;")
     product_types = [item for sublist in cur.fetchall() for item in sublist]
     product_types.sort()
     ls = []
@@ -175,5 +179,5 @@ def get_product_types(source):
 
 
 if __name__ == '__main__':
-    ls = get_product_types('icis')
+    ls = get_product_types('eex')
     pass
