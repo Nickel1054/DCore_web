@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64013729-3444-4eeb-b777-d1d9c66219ea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/market.PJSMvw/schema/bi.RwwAAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/market.PJSMvw/schema/bi.RwwAAA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/market.PJSMvw/schema/bi.RwwAAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/market.PJSMvw/schema/bi.RwwAAA.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/market.PJSMvw/schema/prime.f7JfBg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/market.PJSMvw/schema/prime.f7JfBg.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/market.PJSMvw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/market.PJSMvw/schema/public.abK9xQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/onload.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/dict_data/form_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/dict_data/form_values.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/templates/calculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/templates/calculator.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/calculator/js/calc.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/calculator/js/calc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +26,8 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -68,29 +66,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/yura/PycharmProjects/DCore_web/static/calculator/js",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yura/PycharmProjects/DCore_web/static/calculator/js&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/static/calculator/js" />
@@ -217,7 +215,8 @@
       <workItem from="1682937980352" duration="4510000" />
       <workItem from="1683011736224" duration="70310000" />
       <workItem from="1683613867474" duration="24742000" />
-      <workItem from="1683698487371" duration="27535000" />
+      <workItem from="1683698487371" duration="28248000" />
+      <workItem from="1683875259895" duration="20010000" />
     </task>
     <servers />
   </component>
@@ -237,28 +236,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/calculator/dict_data/form_values.py</url>
-          <line>83</line>
+          <line>84</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/calculator/dict_data/form_values.py</url>
-          <line>182</line>
+          <line>272</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/calculator/dict_data/form_values.py</url>
-          <line>126</line>
+          <line>195</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/calculator/dict_data/form_values.py</url>
-          <line>141</line>
+          <line>210</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/calculator/dict_data/form_values.py</url>
-          <line>177</line>
+          <line>246</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/calculator/dict_data/form_values.py</url>
+          <line>266</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -266,6 +270,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DCore_web$form_values.coverage" NAME="form_values Coverage Results" MODIFIED="1683122067398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/calculator/dict_data" />
     <SUITE FILE_PATH="coverage/DCore_web$calc_extras.coverage" NAME="calc_extras Coverage Results" MODIFIED="1683273078776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/calculator/templatetags" />
-    <SUITE FILE_PATH="coverage/DCore_web$form_values__1_.coverage" NAME="form_values (1) Coverage Results" MODIFIED="1683718921889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/calculator/dict_data" />
+    <SUITE FILE_PATH="coverage/DCore_web$form_values__1_.coverage" NAME="form_values (1) Coverage Results" MODIFIED="1683894144740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/calculator/dict_data" />
   </component>
 </project>

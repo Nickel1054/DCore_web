@@ -2,6 +2,9 @@
 // select_field.setAttribute("onchange", "dynamic_form()")
 
 
+// date_field1.classList.add("form-control");
+// date_field2.classList.add("form-control");
+
 function make_vis(element) {
     if (element.classList.contains('select-hid')) {
         element.classList.remove('select-hid');
@@ -202,10 +205,11 @@ function zone_change(element_id) {
     let column_number = element_id.split('_').at(-1);
     // console.log(column_number);
     let commodity = document.getElementById('id_commodity').value;
-    let source = document.getElementById('id_exchange_ee_spot_' + column_number).value;
+    let source = document.querySelector('.select-exchange.select-vis.select-column-' + column_number + ' select').value;
     clear_fields_all();
-
+    // console.log('zone changed');
     if (['electricity_spot', 'electricity_futures'].indexOf(commodity) >= 0) {
+        // console.log('ee');
         let loads = document.getElementById('load_type_' + column_number + '-div-id');
         make_invis_all('select-load select-column-' + column_number);
 
@@ -214,26 +218,77 @@ function zone_change(element_id) {
             make_vis(loads);
         }
     }
+    // console.log('passed');
     if (zone === 'empty') {
+        // console.log('empty');
         make_invis_all('select-product select-column-' + column_number);
         clear_fields_all();
     } else {
         make_invis_all('select-product select-column-' + column_number);
-        let select_div = document.getElementById('product_types_' + source + '_' + column_number + '-div-id');
-        // console.log("CLASS" + select_div.className);
+        let select_div;
+        if (commodity === 'co2') {
+            select_div = document.getElementById('product_types_co2_' + column_number + '-div-id');
+        } else {
+            select_div = document.getElementById('product_types_' + source + '_' + column_number + '-div-id');
+        }
+        console.log('product_types_' + source + '_' + column_number + '-div-id');
         make_vis(select_div);
 
     }
 }
 
+function product_change(element_id) {
+    let product_dict = {
+        'day': 'period_date_field_',
+        'week': 'period_week_',
+        'weekend': 'period_weekend_',
+        'month': 'period_month_',
+        'quarter': 'period_quarter_',
+        'season': 'period_season_',
+        'year': 'period_year_',
+        'gas_year': 'period_gas_year_',
+        'da': 'period_date_field_',
+    };
+    let product = document.getElementById(element_id).value;
+    let column_number = element_id.split('_').at(-1);
+    // console.log('PRODUCT: ' + product);
+    clear_fields_all()
+    make_invis_all('select-period select-column-' + column_number);
+    if (product !== 'empty') {
+
+        let select_div = document.getElementById(product_dict[product] + column_number + '-div-id');
+        // console.log(product_dict[product] + column_number + '-div-id');
+        make_vis(select_div);
+    //     TODO: change check to show different sets of fields (see choices.ods)
+    }
+}
+
+function delivery_period_change(element_id) {
+    let delivery_period = document.getElementById(element_id).value;
+    let column_number = element_id.split('_').at(-1);
+    console.log(delivery_period);
+    clear_fields_all()
+    make_invis_all('select-year select-column-' + column_number);
+
+
+    // if (delivery_period !== 'empty' && delivery_period !== '') {
+    //
+    //     let select_div = document.getElementById(product_dict[product] + column_number + '-div-id');
+    //     // console.log(product_dict[product] + column_number + '-div-id');
+    //     make_vis(select_div);
+    // } else {
+    //     clear_fields_all()
+    //     make_invis_all('select-year select-column-' + column_number);
+}
+
 function button_change() {
-    let zone = document.querySelectorAll('.select-zone select');
-    let selected_number = 0
-    for (let i = 0; i < zone.length; i++) {
-        if (zone[i].value !== 'empty') {
+    let selected_number = 0;
+    let periods = document.querySelectorAll('.select-div.select-period.select-vis');
+    for (let i = 0; i < periods.length; i++) {
+        if (periods[i].value !== 'empty') {
             selected_number++;
             if (selected_number >= 2) {
-                // enable_button()
+                enable_button()
                 return 0;
             }
         }
@@ -241,5 +296,3 @@ function button_change() {
     disable_button();
     return 1;
 }
-
-// TODO bugged zone select.
