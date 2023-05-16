@@ -239,7 +239,7 @@ function zone_change(element_id) {
 
 function product_change(element_id) {
     let product_dict = {
-        'day': 'period_date_field_',
+        'day': ['period_deliverystart_', "period_deliveryend_"],
         'week': 'period_week_',
         'weekend': 'period_weekend_',
         'month': 'period_month_',
@@ -255,20 +255,46 @@ function product_change(element_id) {
     clear_fields_all()
     make_invis_all('select-period select-column-' + column_number);
     if (product !== 'empty') {
-
-        let select_div = document.getElementById(product_dict[product] + column_number + '-div-id');
-        // console.log(product_dict[product] + column_number + '-div-id');
-        make_vis(select_div);
-    //     TODO: change check to show different sets of fields (see choices.ods)
+        if (product === 'day') {
+            for (let element of product_dict[product]) {
+                let select_div = document.getElementById(element + column_number + '-div-id');
+                console.log(element + column_number + '-div-id');
+                make_vis(select_div);
+            }
+        } else {
+            let select_div = document.getElementById(product_dict[product] + column_number + '-div-id');
+            // console.log(product_dict[product] + column_number + '-div-id');
+            make_vis(select_div);
+        }
     }
+    let delivery_year = document.getElementById('year_' + column_number + '-div-id');
+    make_invis(delivery_year);
+    clear_fields_all();
 }
 
 function delivery_period_change(element_id) {
     let delivery_period = document.getElementById(element_id).value;
     let column_number = element_id.split('_').at(-1);
+    let product_type = document.querySelector('.select-product.select-vis.select-column-' + column_number + ' select').value;
     console.log(delivery_period);
+    // console.log(product_type);
     clear_fields_all()
+    // make_invis_all('select-period select-column-' + column_number);
     make_invis_all('select-year select-column-' + column_number);
+
+    let del_start = document.getElementById('period_deliverystart_1-div-id');
+    let del_end = document.getElementById('period_deliveryend_1-div-id');
+    make_invis(del_start);
+    make_invis(del_end);
+
+    let year_field = document.getElementById('year_' + column_number + '-div-id');
+    if (['week', 'weekend', 'month', 'quarter', 'season',].includes(product_type) && delivery_period !== 'empty') {
+        make_vis(year_field);
+    } else {
+        make_invis(year_field);
+        clear_fields_all();
+    }
+    button_change();
 
 
     // if (delivery_period !== 'empty' && delivery_period !== '') {
@@ -283,16 +309,14 @@ function delivery_period_change(element_id) {
 
 function button_change() {
     let selected_number = 0;
-    let periods = document.querySelectorAll('.select-div.select-period.select-vis');
-    for (let i = 0; i < periods.length; i++) {
-        if (periods[i].value !== 'empty') {
-            selected_number++;
-            if (selected_number >= 2) {
-                enable_button()
-                return 0;
-            }
+    let form_filled = {}
+    let form_values = $('#calculator-form').serializeArray();
+    for (let element of form_values) {
+        if (form_values[element] !== '' && form_values[element] !== 'empty') {
+            form_filled[element] = form_values[element];
         }
     }
+    console.log(form_filled);
     disable_button();
     return 1;
 }

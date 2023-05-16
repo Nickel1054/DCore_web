@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64013729-3444-4eeb-b777-d1d9c66219ea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/static/calculator/js/onload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculator/dict_data/form_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/dict_data/form_values.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculator/templates/calculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/templates/calculator.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/calculator/js/calc.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/calculator/js/calc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +213,8 @@
       <workItem from="1683011736224" duration="70310000" />
       <workItem from="1683613867474" duration="24742000" />
       <workItem from="1683698487371" duration="28248000" />
-      <workItem from="1683875259895" duration="20010000" />
+      <workItem from="1683875259895" duration="20105000" />
+      <workItem from="1684221258371" duration="10564000" />
     </task>
     <servers />
   </component>

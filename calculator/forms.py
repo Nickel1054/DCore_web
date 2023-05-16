@@ -111,44 +111,47 @@ class CalculatorForm(forms.Form):
     period_date_field_2 = forms.DateField(label='Delivery Period Day 2', widget=DateInput())
 
     period_week_1 = forms.ChoiceField(label='Week 1', choices=DELIVERY_PERIOD['week'], initial='empty',
-                                      widget=forms.Select(attrs={'onchange': ''}))
+                                      widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
     period_week_2 = forms.ChoiceField(label='Week 2', choices=DELIVERY_PERIOD['week'], initial='empty',
-                                      widget=forms.Select(attrs={'onchange': ''}))
+                                      widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
 
     period_weekend_1 = forms.ChoiceField(label='Weekend 1', choices=DELIVERY_PERIOD['weekend'], initial='empty',
-                                         widget=forms.Select(attrs={'onchange': ''}))
+                                         widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
     period_weekend_2 = forms.ChoiceField(label='Weekend 2', choices=DELIVERY_PERIOD['weekend'], initial='empty',
-                                         widget=forms.Select(attrs={'onchange': ''}))
+                                         widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
 
     period_month_1 = forms.ChoiceField(label='Month 1', choices=DELIVERY_PERIOD['month'], initial='empty',
-                                       widget=forms.Select(attrs={'onchange': ''}))
+                                       widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
     period_month_2 = forms.ChoiceField(label='Month 2', choices=DELIVERY_PERIOD['month'], initial='empty',
-                                       widget=forms.Select(attrs={'onchange': ''}))
+                                       widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
 
     period_quarter_1 = forms.ChoiceField(label='Quarter 1', choices=DELIVERY_PERIOD['quarter'], initial='empty',
-                                         widget=forms.Select(attrs={'onchange': ''}))
+                                         widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
     period_quarter_2 = forms.ChoiceField(label='Quarter 2', choices=DELIVERY_PERIOD['quarter'], initial='empty',
-                                         widget=forms.Select(attrs={'onchange': ''}))
+                                         widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
 
     period_season_1 = forms.ChoiceField(label='Season 1', choices=DELIVERY_PERIOD['season'], initial='empty',
-                                        widget=forms.Select(attrs={'onchange': ''}))
+                                        widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
     period_season_2 = forms.ChoiceField(label='Season 2', choices=DELIVERY_PERIOD['season'], initial='empty',
-                                        widget=forms.Select(attrs={'onchange': ''}))
+                                        widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
 
     period_year_1 = forms.ChoiceField(label='Year 1', choices=DELIVERY_PERIOD['year'], initial='empty',
-                                      widget=forms.Select(attrs={'onchange': ''}))
+                                      widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
     period_year_2 = forms.ChoiceField(label='Year 2', choices=DELIVERY_PERIOD['year'], initial='empty',
-                                      widget=forms.Select(attrs={'onchange': ''}))
+                                      widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
 
     period_gas_year_1 = forms.ChoiceField(label='Gas Year 1', choices=DELIVERY_PERIOD['gas_year'], initial='empty',
-                                          widget=forms.Select(attrs={'onchange': ''}))
+                                          widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
     period_gas_year_2 = forms.ChoiceField(label='Gas Year 2', choices=DELIVERY_PERIOD['gas_year'], initial='empty',
-                                          widget=forms.Select(attrs={'onchange': ''}))
+                                          widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
 
     year_1 = forms.ChoiceField(label='Delivery Year 1', choices=DELIVERY_PERIOD['year'], initial='empty',
                                widget=forms.Select(attrs={'onchange': ''}))
     year_2 = forms.ChoiceField(label='Delivery Year 2', choices=DELIVERY_PERIOD['year'], initial='empty',
                                widget=forms.Select(attrs={'onchange': ''}))
 
-    deliverystart_1 = forms.DateField(label='Delivery Start 1', widget=DateInput())
-    deliverystart_2 = forms.DateField(label='Delivery Start 2', widget=DateInput())
+    period_deliverystart_1 = forms.DateField(label='Delivery Start 1', widget=DateInput())
+    period_deliverystart_2 = forms.DateField(label='Delivery Start 2', widget=DateInput())
+
+    period_deliveryend_1 = forms.DateField(label='Delivery End 1', widget=DateInput())
+    period_deliveryend_2 = forms.DateField(label='Delivery End 2', widget=DateInput())
