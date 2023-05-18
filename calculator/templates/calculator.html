@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-12">
                 {{ form.non_field_errors }}
-                <form id="calculator-form">
+                <form id="calculator-form" method="post" action="{% url 'success' %}">
                     {#                                                                         TODO Add table here for equal heights #}
                     {% csrf_token %}
                     {{ form.subject.errors }}
@@ -47,15 +47,15 @@
 
                         {% endif %}
                     {% endfor %}
-
+                    <div class="row">
+                        <div class="col-4">
+                            <input class="btn btn-primary" id="submit-btn" type="submit" value="Submit" disabled>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
-        <div class="row">
-            <div class="col-4">
-                <input class="btn btn-primary" id="submit-btn" type="submit" value="Submit" disabled>
-            </div>
-        </div>
+
     </div>
     <script src={% static 'calculator/js/onload.js' %}></script>
 

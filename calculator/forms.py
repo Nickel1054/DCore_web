@@ -107,8 +107,8 @@ class CalculatorForm(forms.Form):
 
     ### DELIVERY PERIOD
 
-    period_date_field_1 = forms.DateField(label='Delivery Period Day 1', widget=DateInput())
-    period_date_field_2 = forms.DateField(label='Delivery Period Day 2', widget=DateInput())
+    # period_date_field_1 = forms.DateField(label='Delivery Period Day 1', widget=DateInput())
+    # period_date_field_2 = forms.DateField(label='Delivery Period Day 2', widget=DateInput())
 
     period_week_1 = forms.ChoiceField(label='Week 1', choices=DELIVERY_PERIOD['week'], initial='empty',
                                       widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
@@ -146,12 +146,20 @@ class CalculatorForm(forms.Form):
                                           widget=forms.Select(attrs={'onchange': 'delivery_period_change(this.id)'}))
 
     year_1 = forms.ChoiceField(label='Delivery Year 1', choices=DELIVERY_PERIOD['year'], initial='empty',
-                               widget=forms.Select(attrs={'onchange': ''}))
+                               widget=forms.Select(attrs={'onchange': 'button_change()'}))
     year_2 = forms.ChoiceField(label='Delivery Year 2', choices=DELIVERY_PERIOD['year'], initial='empty',
-                               widget=forms.Select(attrs={'onchange': ''}))
+                               widget=forms.Select(attrs={'onchange': 'button_change()'}))
 
-    period_deliverystart_1 = forms.DateField(label='Delivery Start 1', widget=DateInput())
-    period_deliverystart_2 = forms.DateField(label='Delivery Start 2', widget=DateInput())
+    period_deliverystart_1 = forms.DateField(label='Delivery Start 1', required=False,
+                                             widget=DateInput(
+                                                 attrs={'onchange': 'button_change(); check_dates(this.id)'}))
+    period_deliverystart_2 = forms.DateField(label='Delivery Start 2', required=False,
+                                             widget=DateInput(
+                                                 attrs={'onchange': 'button_change(); check_dates(this.id)'}))
 
-    period_deliveryend_1 = forms.DateField(label='Delivery End 1', widget=DateInput())
-    period_deliveryend_2 = forms.DateField(label='Delivery End 2', widget=DateInput())
+    period_deliveryend_1 = forms.DateField(label='Delivery End 1', required=False,
+                                           widget=DateInput(
+                                               attrs={'onchange': 'button_change(); check_dates(this.id)'}))
+    period_deliveryend_2 = forms.DateField(label='Delivery End 2', required=False,
+                                           widget=DateInput(
+                                               attrs={'onchange': 'button_change(); check_dates(this.id)'}))

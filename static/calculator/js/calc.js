@@ -57,7 +57,7 @@ function clear_fields_all() {
 
 function commodity_change() {
     let selected_value = document.getElementById('id_commodity').value;
-    console.log(selected_value);
+    // console.log(selected_value);
     if (selected_value === 'empty') {
         make_invis_all();
         clear_fields_all();
@@ -66,7 +66,7 @@ function commodity_change() {
         let select_divs = document.querySelectorAll('[id^="exchange_gas"]');
         // let select_div = document.getElementById('exchange_gas-div-id');
         for (let i = 0; i < select_divs.length; i++) {
-            console.log(select_divs[i].className);
+            // console.log(select_divs[i].className);
             make_vis(select_divs[i]);
             clear_fields_all();
         }
@@ -76,7 +76,7 @@ function commodity_change() {
         let select_divs = document.querySelectorAll('[id^="exchange_ee_spot"]');
         // let select_div = document.getElementById('exchange_gas-div-id');
         for (let i = 0; i < select_divs.length; i++) {
-            console.log(select_divs[i].className);
+            // console.log(select_divs[i].className);
             make_vis(select_divs[i]);
             clear_fields_all();
         }
@@ -85,7 +85,7 @@ function commodity_change() {
         let select_divs = document.querySelectorAll('[id^="exchange_ee_futures"]');
         // let select_div = document.getElementById('exchange_gas-div-id');
         for (let i = 0; i < select_divs.length; i++) {
-            console.log(select_divs[i].className);
+            // console.log(select_divs[i].className);
             make_vis(select_divs[i]);
             clear_fields_all();
         }
@@ -94,12 +94,12 @@ function commodity_change() {
         let select_divs = document.querySelectorAll('[id^="exchange_co2"]');
         // let select_div = document.getElementById('exchange_gas-div-id');
         for (let i = 0; i < select_divs.length; i++) {
-            console.log(select_divs[i].className);
+            // console.log(select_divs[i].className);
             make_vis(select_divs[i]);
             clear_fields_all();
         }
-        button_change();
     }
+    button_change();
 }
 
 function gas_source_change(element_id) {
@@ -114,7 +114,7 @@ function gas_source_change(element_id) {
         make_invis_all('select-zone select-column-' + column_number);
         // console.log('zone_icis_gas_' + column_number + '-div-id');
         let select_div = document.getElementById('zone_icis_gas_' + column_number + '-div-id');
-        console.log(select_div);
+        // console.log(select_div);
         make_vis(select_div);
     } else if (selected_value === 'eex') {
         clear_fields_all();
@@ -231,15 +231,17 @@ function zone_change(element_id) {
         } else {
             select_div = document.getElementById('product_types_' + source + '_' + column_number + '-div-id');
         }
-        console.log('product_types_' + source + '_' + column_number + '-div-id');
+        // console.log('product_types_' + source + '_' + column_number + '-div-id');
         make_vis(select_div);
 
     }
+    button_change()
 }
 
 function product_change(element_id) {
     let product_dict = {
         'day': ['period_deliverystart_', "period_deliveryend_"],
+        'da': ['period_deliverystart_', "period_deliveryend_"],
         'week': 'period_week_',
         'weekend': 'period_weekend_',
         'month': 'period_month_',
@@ -247,7 +249,6 @@ function product_change(element_id) {
         'season': 'period_season_',
         'year': 'period_year_',
         'gas_year': 'period_gas_year_',
-        'da': 'period_date_field_',
     };
     let product = document.getElementById(element_id).value;
     let column_number = element_id.split('_').at(-1);
@@ -255,10 +256,10 @@ function product_change(element_id) {
     clear_fields_all()
     make_invis_all('select-period select-column-' + column_number);
     if (product !== 'empty') {
-        if (product === 'day') {
+        if (product === 'day' || product === 'da') {
             for (let element of product_dict[product]) {
                 let select_div = document.getElementById(element + column_number + '-div-id');
-                console.log(element + column_number + '-div-id');
+                // console.log(element + column_number + '-div-id');
                 make_vis(select_div);
             }
         } else {
@@ -270,20 +271,21 @@ function product_change(element_id) {
     let delivery_year = document.getElementById('year_' + column_number + '-div-id');
     make_invis(delivery_year);
     clear_fields_all();
+    button_change()
 }
 
 function delivery_period_change(element_id) {
     let delivery_period = document.getElementById(element_id).value;
     let column_number = element_id.split('_').at(-1);
     let product_type = document.querySelector('.select-product.select-vis.select-column-' + column_number + ' select').value;
-    console.log(delivery_period);
+    // console.log(delivery_period);
     // console.log(product_type);
     clear_fields_all()
     // make_invis_all('select-period select-column-' + column_number);
     make_invis_all('select-year select-column-' + column_number);
 
-    let del_start = document.getElementById('period_deliverystart_1-div-id');
-    let del_end = document.getElementById('period_deliveryend_1-div-id');
+    let del_start = document.getElementById('period_deliverystart_' + column_number + '-div-id');
+    let del_end = document.getElementById('period_deliveryend_' + column_number + '-div-id');
     make_invis(del_start);
     make_invis(del_end);
 
@@ -308,15 +310,95 @@ function delivery_period_change(element_id) {
 }
 
 function button_change() {
-    let selected_number = 0;
-    let form_filled = {}
+    let form_filled_1 = {};
+    let form_filled_2 = {};
     let form_values = $('#calculator-form').serializeArray();
     for (let element of form_values) {
-        if (form_values[element] !== '' && form_values[element] !== 'empty') {
-            form_filled[element] = form_values[element];
+        if (element.value !== '' && element.value !== 'empty') {
+            if (element.name === 'commodity') {
+                form_filled_1[element.name] = element.value;
+                form_filled_2[element.name] = element.value;
+            } else if (element.name.includes('period_delivery')) {
+                if (element.name.split('_')[element.name.split('_').length - 1] === '1') {
+                    form_filled_1[element.name.split('_')[1]] = element.value;
+                } else if (element.name.split('_')[element.name.split('_').length - 1] === '2') {
+                    form_filled_2[element.name.split('_')[1]] = element.value;
+                }
+            } else {
+                if (element.name.split('_')[element.name.split('_').length - 1] === '1') {
+                    form_filled_1[element.name.split('_')[0]] = element.value;
+                } else if (element.name.split('_')[element.name.split('_').length - 1] === '2') {
+                    form_filled_2[element.name.split('_')[0]] = element.value;
+                }
+            }
         }
     }
-    console.log(form_filled);
-    disable_button();
-    return 1;
+
+    // console.log('1:');
+    // console.log(form_filled_1);
+    // console.log(Object.keys(form_filled_1).length);
+    // console.log('2:');
+    // console.log(form_filled_2);
+    // console.log(Object.keys(form_filled_1).length);
+    // console.log('\n');
+
+    let count = 0;
+    for (let dict of [form_filled_1, form_filled_2]) {
+        if (dict['commodity'] === 'gas') {
+            if (['day', 'week', 'weekend', 'month', 'quarter', 'season'].includes(dict['product'])) {
+                if (Object.keys(dict).length === 6) {
+                    count++;
+                }
+            } else if (['year', 'gas_year'].includes(dict['product'])) {
+                if (Object.keys(dict).length === 5) {
+                    count++;
+                }
+            }
+        } else if (dict['commodity'] === 'electricity_spot') {
+            if (Object.keys(dict).length === 7) {
+                count++;
+            }
+        } else if (dict['commodity'] === 'electricity_futures') {
+            if (['day', 'week', 'weekend', 'month', 'quarter', 'season'].includes(dict['product'])) {
+                if (Object.keys(dict).length === 7) {
+                    count++;
+                }
+            } else if (['year'].includes(dict['product'])) {
+                if (Object.keys(dict).length === 6) {
+                    count++;
+                }
+            }
+        } else if (dict['commodity'] === 'co2') {
+            if (Object.keys(dict).length === 6) {
+                count++;
+            }
+        }
+    }
+    // console.log('COUNT');
+    // console.log(count);
+    if (count === 2) {
+        enable_button()
+    } else {
+        disable_button();
+    }
+}
+
+function check_dates(element_id) {
+    let column_number = element_id.split('_').at(-1);
+    let field = document.getElementById(element_id);
+    let delivery_start = document.getElementById('id_period_deliverystart_' + column_number);
+    let delivery_end = document.getElementById('id_period_deliveryend_' + column_number);
+
+    delivery_start.setAttribute('min', '2018-01-01');
+    delivery_end.setAttribute('min', '2018-01-01');
+    delivery_start.setAttribute('max', '2025-12-31');
+    delivery_end.setAttribute('max', '2025-12-31');
+    // console.log('COLUMN ' + column_number.toString());
+    if (field.value !== '') {
+        if (element_id.includes('deliverystart')) {
+            delivery_end.setAttribute('min', field.value);
+        } else if (element_id.includes('deliveryend')) {
+            delivery_start.setAttribute('max', field.value);
+        }
+    }
 }

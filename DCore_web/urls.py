@@ -14,13 +14,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib.auth.decorators import login_required
+from django.views.generic.base import RedirectView
 from django.urls import path, include
 from django.contrib import admin
 from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.ico'))),
     path('', views.HomePage.as_view(), name='home'),
     path('about/', views.AboutPage.as_view(), name='about'),
     path('documentation/', views.DocumentationPage.as_view(), name='doc'),
