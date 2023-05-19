@@ -11,7 +11,6 @@ from .calculator_utils.Calculator_class import *
 class Success(TemplateView):
     template_name = 'base.html'
 
-
 def calculator_view(request):
     if request.method == 'POST':
         print('success')
@@ -22,7 +21,7 @@ def calculator_view(request):
 class CalculatorPage(FormView):
     template_name = "calculator.html"
     form_class = CalculatorForm
-    # success_url = 'success/'
+    # success_url = 'success'
 
     # context = {
     #     "form": form_class
@@ -34,8 +33,18 @@ class CalculatorPage(FormView):
         return context
 
     def form_valid(self, form):
-        return super(CalculatorPage, self).form_valid(form)
+        return super().form_valid(form)
 
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            a = Calculator(form.cleaned_data).run()
+            # <process form cleaned data>
+            print('REDIRECTING')
+            return HttpResponseRedirect('success/')
+
+        print('STAYING')
+        return render(request, self.template_name, {"form": form})
     # def form_valid(self, form):
     #     # This method is called when valid form data has been POSTed.
     #     # It should return an HttpResponse.

@@ -374,8 +374,8 @@ function button_change() {
             }
         }
     }
-    // console.log('COUNT');
-    // console.log(count);
+    console.log('COUNT');
+    console.log(count);
     if (count === 2) {
         enable_button()
     } else {

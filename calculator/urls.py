@@ -19,7 +19,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    # path('', login_required(views.CalculatorPage.as_view()), name='home-calc', ),
-    path('', views.calculator_view, name='home-calc', ),
+    path('', login_required(views.CalculatorPage.as_view()), name='home-calc', ),
+    # path('', views.calculator_view, name='home-calc', ),
     path('success/', views.Success.as_view(), name='success', ),
 ]

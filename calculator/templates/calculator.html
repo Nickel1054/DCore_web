@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-12">
                 {{ form.non_field_errors }}
-                <form id="calculator-form" method="post" action="{% url 'success' %}">
+                <form id="calculator-form" method="post">
                     {#                                                                         TODO Add table here for equal heights #}
                     {% csrf_token %}
                     {{ form.subject.errors }}
