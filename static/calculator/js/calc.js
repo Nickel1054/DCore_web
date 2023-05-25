@@ -208,7 +208,7 @@ function zone_change(element_id) {
     let source = document.querySelector('.select-exchange.select-vis.select-column-' + column_number + ' select').value;
     clear_fields_all();
     // console.log('zone changed');
-    if (['electricity_spot', 'electricity_futures'].indexOf(commodity) >= 0) {
+    if (['electricity_futures'].indexOf(commodity) >= 0) {
         // console.log('ee');
         let loads = document.getElementById('load_type_' + column_number + '-div-id');
         make_invis_all('select-load select-column-' + column_number);
@@ -241,6 +241,7 @@ function zone_change(element_id) {
 function product_change(element_id) {
     let product_dict = {
         'day': ['period_deliverystart_', "period_deliveryend_"],
+        'day_eex': 'period_deliverystart_',
         'da': ['period_deliverystart_', "period_deliveryend_"],
         'week': 'period_week_',
         'weekend': 'period_weekend_',
@@ -252,15 +253,22 @@ function product_change(element_id) {
     };
     let product = document.getElementById(element_id).value;
     let column_number = element_id.split('_').at(-1);
+    let source = document.querySelector('.select-vis.select-exchange.select-column-' + column_number + ' select').value
     // console.log('PRODUCT: ' + product);
     clear_fields_all()
     make_invis_all('select-period select-column-' + column_number);
     if (product !== 'empty') {
         if (product === 'day' || product === 'da') {
-            for (let element of product_dict[product]) {
-                let select_div = document.getElementById(element + column_number + '-div-id');
+            if (source === 'eex') {
+                let select_div = document.getElementById(product_dict['day_eex'] + column_number + '-div-id');
                 // console.log(element + column_number + '-div-id');
                 make_vis(select_div);
+            } else {
+                for (let element of product_dict[product]) {
+                    let select_div = document.getElementById(element + column_number + '-div-id');
+                    // console.log(element + column_number + '-div-id');
+                    make_vis(select_div);
+                }
             }
         } else {
             let select_div = document.getElementById(product_dict[product] + column_number + '-div-id');
@@ -335,7 +343,7 @@ function button_change() {
     }
 
     // console.log('1:');
-    // console.log(form_filled_1);
+    console.log(form_filled_1);
     // console.log(Object.keys(form_filled_1).length);
     // console.log('2:');
     // console.log(form_filled_2);
@@ -345,9 +353,19 @@ function button_change() {
     let count = 0;
     for (let dict of [form_filled_1, form_filled_2]) {
         if (dict['commodity'] === 'gas') {
-            if (['day', 'week', 'weekend', 'month', 'quarter', 'season'].includes(dict['product'])) {
+            if (['week', 'weekend', 'month', 'quarter', 'season'].includes(dict['product'])) {
                 if (Object.keys(dict).length === 6) {
                     count++;
+                }
+            } else if (['day'].includes(dict['product'])) {
+                if (dict['exchange'] === 'eex') {
+                    if (Object.keys(dict).length === 5) {
+                        count++;
+                    }
+                } else {
+                    if (Object.keys(dict).length === 6) {
+                        count++;
+                    }
                 }
             } else if (['year', 'gas_year'].includes(dict['product'])) {
                 if (Object.keys(dict).length === 5) {
@@ -355,13 +373,19 @@ function button_change() {
                 }
             }
         } else if (dict['commodity'] === 'electricity_spot') {
-            if (Object.keys(dict).length === 7) {
+            if (Object.keys(dict).length === 6) {
                 count++;
             }
         } else if (dict['commodity'] === 'electricity_futures') {
-            if (['day', 'week', 'weekend', 'month', 'quarter', 'season'].includes(dict['product'])) {
+            if (['week', 'weekend', 'month', 'quarter', 'season'].includes(dict['product'])) {
                 if (Object.keys(dict).length === 7) {
                     count++;
+                }
+            } else if (['day'].includes(dict['product'])) {
+                if (dict['exchange'] === 'eex') {
+                    if (Object.keys(dict).length === 6) {
+                        count++;
+                    }
                 }
             } else if (['year'].includes(dict['product'])) {
                 if (Object.keys(dict).length === 6) {

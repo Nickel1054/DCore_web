@@ -52,10 +52,10 @@ EXCHANGE = {
 }
 
 HUBS = {
-    'eex': [('empty', '--'), ('cegh', 'CEGH'), ('czech', 'CZECH'), ('gpl', 'GPL'), ('ltc', 'LTC'), ('nbp', 'NBP'),
+    'icis': [('empty', '--'), ('cegh', 'CEGH'), ('czech', 'CZECH'), ('gpl', 'GPL'), ('ltc', 'LTC'), ('nbp', 'NBP'),
             ('ncg', 'NCG'), ('peg', 'PEG'), ('psv', 'PSV'), ('pvb', 'PVB'), ('the', 'THE'), ('ttf', 'TTF'),
-            ('turkishgas', 'TURKISHGAS'), ('uavtp', 'UAVTP'), ('vob', 'VOB'), ('zee', 'ZEE'), ('ztp', 'ZTP')],
-    'icis': [('empty', '--'), ('at', 'AT'), ('cegh', 'CEGH'), ('cz_vtp', 'CZ VTP'), ('etf', 'ETF'),
+            ('turkishgas', 'TURKISHGAS'), ('uavtp', 'UAVTP'), ('zee', 'ZEE'), ('ztp', 'ZTP')],
+    'eex': [('empty', '--'), ('at', 'AT'), ('cegh', 'CEGH'), ('cz_vtp', 'CZ VTP'), ('etf', 'ETF'),
              ('gaspool', 'Gaspool'), ('lng', 'LNG'), ('nbp', 'NBP'), ('ncg', 'NCG'), ('peg', 'PEG'), ('psv', 'PSV'),
              ('pvb', 'PVB'), ('the', 'THE'), ('ttf', 'TTF'), ('zee', 'ZEE'), ('ztp', 'ZTP')]
 }
