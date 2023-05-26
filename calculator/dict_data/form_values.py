@@ -111,7 +111,7 @@ PRODUCT_TYPES = {
         ('empty', '--'), ('da', 'DA'),
     ],
     'co2': [
-        ('empty', '--'), ('co2', 'CO2'),
+        ('empty', '--'), ('month', 'Month'),
     ],
 }
 

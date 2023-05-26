@@ -100,9 +100,9 @@ class CalculatorForm(forms.Form):
     product_types_spot_2 = forms.ChoiceField(label='Product type 2', choices=PRODUCT_TYPES['spot'], initial='empty',
                                              widget=forms.Select(attrs={'onchange': 'product_change(this.id)'}))
 
-    product_types_co2_1 = forms.ChoiceField(label='Product type 1', choices=PRODUCT_TYPES['spot'], initial='empty',
+    product_types_co2_1 = forms.ChoiceField(label='Product type 1', choices=PRODUCT_TYPES['co2'], initial='empty',
                                             widget=forms.Select(attrs={'onchange': 'product_change(this.id)'}))
-    product_types_co2_2 = forms.ChoiceField(label='Product type 2', choices=PRODUCT_TYPES['spot'], initial='empty',
+    product_types_co2_2 = forms.ChoiceField(label='Product type 2', choices=PRODUCT_TYPES['co2'], initial='empty',
                                             widget=forms.Select(attrs={'onchange': 'product_change(this.id)'}))
 
     ### DELIVERY PERIOD

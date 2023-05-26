@@ -4,12 +4,15 @@ from calculator.forms import CalculatorForm
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from .calculator_utils.Calculator_class import *
-
+from django.http import HttpResponse
+from io import BytesIO
+import json
 
 # Create your views here.
 
 class Success(TemplateView):
-    template_name = 'base.html'
+    template_name = 'result.html'
+
 
 def calculator_view(request):
     if request.method == 'POST':
@@ -18,14 +21,11 @@ def calculator_view(request):
     form = CalculatorForm
     return render(request, 'calculator.html', {'form': form})
 
+
 class CalculatorPage(FormView):
     template_name = "calculator.html"
     form_class = CalculatorForm
-    # success_url = 'success'
-
-    # context = {
-    #     "form": form_class
-    # }
+    success_name = "result.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
@@ -38,64 +38,29 @@ class CalculatorPage(FormView):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            a = Calculator(form.cleaned_data).run()
+            df = Calculator(form.cleaned_data).run()
+            request.session['data'] = df.to_json()
             # <process form cleaned data>
             print('REDIRECTING')
-            return HttpResponseRedirect('success/')
+            # return HttpResponseRedirect('success/')
+            return render(request, self.success_name, {"df": df})
 
         print('STAYING')
         return render(request, self.template_name, {"form": form})
-    # def form_valid(self, form):
-    #     # This method is called when valid form data has been POSTed.
-    #     # It should return an HttpResponse.
-    #     a = Calculator()
-    #     return super().form_valid(form)
-    # def get(self, request, *args, **kwargs):
-    #     return render(request, self.template_name, self.context)
-    #
-    # def post(self, request, *args, **kwargs):
-    #     form = CalculatorForm(request.POST)
-    #     if form.is_valid():
-    #         answer = form.cleaned_data
-    #
-    #     context = {'form': answer}
-    #     return render(request, self.template_name, context)
 
-    # def post(self, request, *args, **kwargs):
-    #     form = self.form_class(request.POST)
-    #     a = Calculator()
-    #     if form.is_valid():
-    #         # <process form cleaned data>
-    #         return HttpResponseRedirect('/success/')
-    #     return render(request, self.template_name, {'form': form})
 
-    # def post(self, request, **kwargs):
-    #     form =
-    #     if form.is_valid():
-    #         a = Calculator()
-    #         # Success! We can use form.cleaned_data now
-    #         return redirect('success')
-
-    # def form_invalid(self, form, **kwargs):
-    #     context = self.get_context_data(**kwargs)
-    #     context['form'] = form
-    #     # here you can add things like:
-    #     context['show_results'] = False
-    #     return self.render_to_response(context)
-    #
-    # def form_valid(self, form, **kwargs):
-    #     context = self.get_context_data(**kwargs)
-    #     context['form'] = form
-    #     a = Calculator()
-    #     # here you can add things like:
-    #     context['show_results'] = True
-    #     return self.render_to_response(context)
-    #
-    # def form_valid(self, form):
-    #     self.render_to_response()
-    #     # This method is called when valid form data has been POSTed.
-    #     # It should return an HttpResponse.
-    #     return super().form_valid(form)
-    #
-    # def get(self, request, *args, **kwargs):
-    #     return render(request, self.template_name, context=self.context)
+def download_view(request):
+    df = pd.DataFrame(json.loads(request.session['data']))
+    with BytesIO() as b:
+        # Use the StringIO object as the filehandle.
+        writer = pd.ExcelWriter(b, engine='xlsxwriter')
+        df.to_excel(writer, sheet_name='Sheet1', index=False)
+        writer.close()
+        # Set up the Http response.
+        filename = 'django_simple.xlsx'
+        response = HttpResponse(
+            b.getvalue(),
+            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
+        response['Content-Disposition'] = 'attachment; filename=%s' % filename
+        return response

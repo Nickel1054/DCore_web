@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+
+    <div class="h-100 p-5 bg-light border rounded-3">
+        <div class="row">
+            <h1>RESULT</h1>
+        </div>
+        <div class="row">
+            <p>Results here</p>
+            <table class="table">
+                <tr>
+                    {% for col in df.columns %}
+                        <th scope="col">
+                            {{ col }}
+                        </th>
+                    {% endfor %}
+                </tr>
+                {% for index, row in df.iterrows %}
+                    {% if index < 3 %}
+                        <tr>
+                            {% for cell in row %}
+                                <td>
+                                    {{ cell }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                <tr>
+                    {% for column in df.columns %}
+                        <td>...</td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+    <p>Total {{ df|length }} rows.</p>
+    <a href="{% url 'download' %}"><input class="button btn-primary" type="button" value="Download"></a>
+    </div>
+
+{% endblock %}
