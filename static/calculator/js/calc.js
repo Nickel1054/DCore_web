@@ -5,6 +5,17 @@
 // date_field1.classList.add("form-control");
 // date_field2.classList.add("form-control");
 
+function move_element(div_selector, dest_tr) {
+    let label_element = document.querySelector(div_selector + ' label');
+    jQuery(label_element).detach().appendTo(dest_tr + ' td.label-1');
+
+    // console.log(label_element);
+    let div_element = document.querySelector(div_selector);
+    jQuery(div_element).detach().appendTo(dest_tr + ' td.column-1');
+}
+
+// TODO: implement move_element to every change function to move elements in table and out of it.
+
 function make_vis(element) {
     if (element.classList.contains('select-hid')) {
         element.classList.remove('select-hid');
@@ -18,7 +29,6 @@ function make_invis(element) {
         element.classList.add('select-hid');
     }
 }
-
 
 function make_invis_all(in_element = '') {
     let selector = ".select-div";
@@ -251,6 +261,7 @@ function product_change(element_id) {
         'year': 'period_year_',
         'gas_year': 'period_gas_year_',
     };
+    let commodity = document.getElementById('id_commodity').value;
     let product = document.getElementById(element_id).value;
     let column_number = element_id.split('_').at(-1);
     let source = document.querySelector('.select-vis.select-exchange.select-column-' + column_number + ' select').value
@@ -259,7 +270,7 @@ function product_change(element_id) {
     make_invis_all('select-period select-column-' + column_number);
     if (product !== 'empty') {
         if (product === 'day' || product === 'da') {
-            if (source === 'eex') {
+            if (source === 'eex' || commodity === 'gas') {
                 let select_div = document.getElementById(product_dict['day_eex'] + column_number + '-div-id');
                 // console.log(element + column_number + '-div-id');
                 make_vis(select_div);
@@ -363,7 +374,7 @@ function button_change() {
                         count++;
                     }
                 } else {
-                    if (Object.keys(dict).length === 6) {
+                    if (Object.keys(dict).length === 5) {
                         count++;
                     }
                 }

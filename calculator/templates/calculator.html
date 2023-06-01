@@ -15,11 +15,57 @@
         <h1>Calculator</h1><br>
         <div class="row">
             <div class="col-12">
+
                 {{ form.non_field_errors }}
                 <form id="calculator-form" method="post">
                     {#                                                                         TODO Add table here for equal heights #}
+
                     {% csrf_token %}
                     {{ form.subject.errors }}
+                    <table>
+                        <tr id="commodity-tr">
+                            <td class="empty col-2"></td>
+                            <td class="label-1 col-4"></td>
+                            <td class="column-1 col-8"></td>
+{#                            <td class="empty col-2"></td>#}
+                        </tr>
+                        <tr id="source-tr" class="table-row-hidden">
+                            <td class="label-1 col-3"></td>
+                            <td class="column-1 col-3"></td>
+                            <td class="label-2 col-3"></td>
+                            <td class="column-2 col-3"></td>
+                        </tr>
+                        <tr id="zone-tr" class="table-row-hidden">
+                            <td class="label-1 col-3"></td>
+                            <td class="column-1 col-3"></td>
+                            <td class="label-2 col-3"></td>
+                            <td class="column-2 col-3"></td>
+                        </tr>
+                        <tr id="load-tr" class="table-row-hidden">
+                            <td class="label-1 col-3"></td>
+                            <td class="column-1 col-3"></td>
+                            <td class="label-2 col-3"></td>
+                            <td class="column-2 col-3"></td>
+                        </tr>
+                        <tr id="product-type-tr" class="table-row-hidden">
+                            <td class="label-1 col-3"></td>
+                            <td class="column-1 col-3"></td>
+                            <td class="label-2 col-3"></td>
+                            <td class="column-2 col-3"></td>
+                        </tr>
+                        <tr id="product-type-sub-1-tr" class="table-row-hidden">
+                            <td class="label-1 col-3"></td>
+                            <td class="column-1 col-3"></td>
+                            <td class="label-2 col-3"></td>
+                            <td class="column-2 col-3"></td>
+                        </tr>
+                        <tr id="product-type-sub-2-tr" class="table-row-hidden">
+                            <td class="label-1 col-3"></td>
+                            <td class="column-1 col-3"></td>
+                            <td class="label-2 col-3"></td>
+                            <td class="column-2 col-3"></td>
+                        </tr>
+                    </table>
                     {% for field in form %}
                         {% if 'commodity' in field.html_name %}
                             <div class="row">

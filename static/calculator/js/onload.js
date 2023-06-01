@@ -14,3 +14,14 @@ for (let field of [date_start_field1, date_start_field2, date_end_field1, date_e
     field.setAttribute('min', '2018-01-01');
     field.setAttribute('max', '2025-12-31');
 }
+
+function move_element(div_selector, dest_tr) {
+    let label_element = document.querySelector(div_selector + ' label');
+    jQuery(label_element).detach().appendTo(dest_tr + ' td.label-1');
+
+    // console.log(label_element);
+    let div_element = document.querySelector(div_selector);
+    jQuery(div_element).detach().appendTo(dest_tr + ' td.column-1');
+}
+
+move_element('#commodity-div-id', '#commodity-tr');

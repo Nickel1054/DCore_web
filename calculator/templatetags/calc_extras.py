@@ -8,6 +8,16 @@ def split_class(value: str):
     return value.replace('-', '_').split('_')[0]
 
 
+@register.filter(is_safe=True, name='class_visible')
+def class_visible(value: str):
+    return 'select-vis' in value.__class__.__name__
+
+
+@register.filter(is_safe=True, name='get_class')
+def get_class(value: str):
+    return value.__class__.__name__
+
+
 @register.filter(is_safe=True, name='remove_number')
 def split_class(value: str):
     return value.rsplit('_', 1)[0]

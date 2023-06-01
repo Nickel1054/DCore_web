@@ -50,8 +50,7 @@ class Calculator:
             f"where h_name = '{hub}' and delivery_year >= 2018 " \
             f"and product_type = '{form_values['product_types_icis'].replace('_', ' ').title()}' "
         if form_values['product_types_icis'] == 'day':
-            q += f"and delivery_start_date >= '{form_values['period_deliverystart']}' " \
-                 f"and delivery_start_date <= '{form_values['period_deliveryend']}' order by trading_date;"
+            q += f"and delivery_start_date = '{form_values['period_deliverystart']}' order by trading_date;"
 
         elif form_values['product_types_icis'] == 'week':
             q += f"and extract('week' from delivery_start_date) = {form_values['period_week'].replace('week', '')} " \
@@ -100,8 +99,7 @@ class Calculator:
             f"where shr.hub = '{hub}' " \
             f"and sptr.product_type = '{form_values['product_types_eex'].replace('_', ' ').title()}' "
         if form_values['product_types_eex'] == 'day':
-            q += f"and delivery_start_date >= '{form_values['period_deliverystart']}' " \
-                 f"and delivery_start_date <= '{form_values['period_deliveryend']}' order by trading_date;"
+            q += f"and delivery_start_date = '{form_values['period_deliverystart']}' order by trading_date;"
 
         elif form_values['product_types_eex'] == 'week':
             q += f"and extract('week' from delivery_start_date) = {form_values['period_week'].replace('week', '')} " \
@@ -140,7 +138,7 @@ class Calculator:
 
     def get_ee_spot(self, form_values):
         zone = get_dict_value(DAM_ZONES['electricity_spot'], form_values['zone_ee_spot'])
-        q = "select date_time, price, delivery_year from bi.power_da_prices_hourly_bi " \
+        q = "select date_time, price, year as delivery_year from bi.power_da_prices_hourly_bi " \
             f"where bidding_zone = '{zone}' " \
             f"and date_time >= '{form_values['period_deliverystart']}' " \
             f"and date_time <= '{form_values['period_deliveryend']}'"
