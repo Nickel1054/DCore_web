@@ -12,6 +12,18 @@ ul {
 
 }
 
+#commodity-tr td.label-1 {
+    text-align: right;
+}
+
+td.label-*{
+    width: 15%;
+}
+
+td.empty{
+    width: 10%;
+}
+
 /*.col-12{*/
 /*    background-color: red;*/
 /*}*/
@@ -20,12 +32,16 @@ ul {
 /*    background-color: blue;*/
 /*}*/
 
-.select-hid{
-    visibility: hidden;
-    height: 0;
-}
+/*.select-hid{*/
+/*    visibility: hidden;*/
+/*    height: 0;*/
+/*}*/
 
 select{
     width: 50%;
 }
+
+/*tr.table-row-hidden{*/
+/*    display: none;*/
+/*}*/
 

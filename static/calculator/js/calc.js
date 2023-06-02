@@ -5,13 +5,32 @@
 // date_field1.classList.add("form-control");
 // date_field2.classList.add("form-control");
 
-function move_element(div_selector, dest_tr) {
-    let label_element = document.querySelector(div_selector + ' label');
-    jQuery(label_element).detach().appendTo(dest_tr + ' td.label-1');
+function move_element_to_table(element, dest_tr) {
+    let column_num = element.id.split('-')[0].slice(-1);
+
+    let label_element = document.querySelector('#' + element.id + ' label');
+    console.log(dest_tr + ' td.label-' + column_num);
+    jQuery(label_element).detach().appendTo('#' + dest_tr + '-tr' + ' td.label-' + column_num);
 
     // console.log(label_element);
-    let div_element = document.querySelector(div_selector);
-    jQuery(div_element).detach().appendTo(dest_tr + ' td.column-1');
+    let div_element = document.querySelector('#' + element.id);
+    jQuery(div_element).detach().appendTo('#' + dest_tr + '-tr' + ' td.column-' + column_num);
+
+    document.querySelectorAll('#calculator-form table span.select2-container--default')[0].setAttribute('style', 'width: 100%')
+}
+
+function move_element_from_table(element) {
+    let column_num = element.id.split('-')[0].slice(-1);
+
+    let label_element = document.querySelector('#' + element.id + ' label');
+    console.log(dest_tr + ' td.label-' + column_num);
+    jQuery(label_element).detach().appendTo('#' + dest_tr + '-tr' + ' td.label-' + column_num);
+
+    // console.log(label_element);
+    let div_element = document.querySelector('#' + element.id);
+    jQuery(div_element).detach().appendTo('#' + dest_tr + '-tr' + ' td.column-' + column_num);
+
+    document.querySelectorAll('#calculator-form table span.select2-container--default')[0].setAttribute('style', 'width: 100%')
 }
 
 // TODO: implement move_element to every change function to move elements in table and out of it.
@@ -77,6 +96,7 @@ function commodity_change() {
         // let select_div = document.getElementById('exchange_gas-div-id');
         for (let i = 0; i < select_divs.length; i++) {
             // console.log(select_divs[i].className);
+            move_element_to_table(select_divs[i], 'source');
             make_vis(select_divs[i]);
             clear_fields_all();
         }

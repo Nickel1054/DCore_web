@@ -22,50 +22,8 @@
 
                     {% csrf_token %}
                     {{ form.subject.errors }}
-                    <table>
-                        <tr id="commodity-tr">
-                            <td class="empty col-2"></td>
-                            <td class="label-1 col-4"></td>
-                            <td class="column-1 col-8"></td>
-{#                            <td class="empty col-2"></td>#}
-                        </tr>
-                        <tr id="source-tr" class="table-row-hidden">
-                            <td class="label-1 col-3"></td>
-                            <td class="column-1 col-3"></td>
-                            <td class="label-2 col-3"></td>
-                            <td class="column-2 col-3"></td>
-                        </tr>
-                        <tr id="zone-tr" class="table-row-hidden">
-                            <td class="label-1 col-3"></td>
-                            <td class="column-1 col-3"></td>
-                            <td class="label-2 col-3"></td>
-                            <td class="column-2 col-3"></td>
-                        </tr>
-                        <tr id="load-tr" class="table-row-hidden">
-                            <td class="label-1 col-3"></td>
-                            <td class="column-1 col-3"></td>
-                            <td class="label-2 col-3"></td>
-                            <td class="column-2 col-3"></td>
-                        </tr>
-                        <tr id="product-type-tr" class="table-row-hidden">
-                            <td class="label-1 col-3"></td>
-                            <td class="column-1 col-3"></td>
-                            <td class="label-2 col-3"></td>
-                            <td class="column-2 col-3"></td>
-                        </tr>
-                        <tr id="product-type-sub-1-tr" class="table-row-hidden">
-                            <td class="label-1 col-3"></td>
-                            <td class="column-1 col-3"></td>
-                            <td class="label-2 col-3"></td>
-                            <td class="column-2 col-3"></td>
-                        </tr>
-                        <tr id="product-type-sub-2-tr" class="table-row-hidden">
-                            <td class="label-1 col-3"></td>
-                            <td class="column-1 col-3"></td>
-                            <td class="label-2 col-3"></td>
-                            <td class="column-2 col-3"></td>
-                        </tr>
-                    </table>
+                        <div class="container table-div">
+                        <table class="table table-bordered col-12">
                     {% for field in form %}
                         {% if 'commodity' in field.html_name %}
                             <div class="row">
@@ -93,6 +51,57 @@
 
                         {% endif %}
                     {% endfor %}
+                    <div class="container table-div">
+
+                        <table class="table table-bordered col-12">
+                            <tr id="commodity-tr">
+                                <td class="label-1" colspan="2"></td>
+                                <td class="column-1" colspan="3"></td>
+                            </tr>
+                            <tr id="source-tr" class="table-row-hidden">
+                                <td class="label-1"></td>
+                                <td class="column-1"></td>
+                                <td class="empty"></td>
+                                <td class="label-2"></td>
+                                <td class="column-2"></td>
+                            </tr>
+                            <tr id="zone-tr" class="table-row-hidden" style="display:none;">
+                                <td class="label-1"></td>
+                                <td class="column-1">AAAA</td>
+                                <td class="empty"></td>
+                                <td class="label-2"></td>
+                                <td class="column-2"></td>
+                            </tr>
+                            <tr id="load-tr" class="table-row-hidden">
+                                <td class="label-1"></td>
+                                <td class="column-1"></td>
+                                <td class="empty"></td>
+                                <td class="label-2"></td>
+                                <td class="column-2"></td>
+                            </tr>
+                            <tr id="product-type-tr" class="table-row-hidden">
+                                <td class="label-1"></td>
+                                <td class="column-1"></td>
+                                <td class="empty"></td>
+                                <td class="label-2"></td>
+                                <td class="column-2"></td>
+                            </tr>
+                            <tr id="product-type-sub-1-tr" class="table-row-hidden">
+                                <td class="label-1"></td>
+                                <td class="column-1"></td>
+                                <td class="empty"></td>
+                                <td class="label-2"></td>
+                                <td class="column-2"></td>
+                            </tr>
+                            <tr id="product-type-sub-2-tr" class="table-row-hidden">
+                                <td class="label-1"></td>
+                                <td class="column-1"></td>
+                                <td class="empty"></td>
+                                <td class="label-2"></td>
+                                <td class="column-2"></td>
+                            </tr>
+                        </table>
+                    </div>
                     <div class="row">
                         <div class="col-4">
                             <input class="btn btn-primary" id="submit-btn" type="submit" value="Submit" disabled>

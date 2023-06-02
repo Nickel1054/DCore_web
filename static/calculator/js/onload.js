@@ -10,10 +10,10 @@ let date_end_field2 = document.getElementById('id_period_deliveryend_2');
 // date_field2.classList.add("form-control");
 // }
 
-for (let field of [date_start_field1, date_start_field2, date_end_field1, date_end_field2]) {
-    field.setAttribute('min', '2018-01-01');
-    field.setAttribute('max', '2025-12-31');
-}
+// for (let field of [date_start_field1, date_start_field2, date_end_field1, date_end_field2]) {
+//     field.setAttribute('min', '2018-01-01');
+//     field.setAttribute('max', '2025-12-31');
+// }
 
 function move_element(div_selector, dest_tr) {
     let label_element = document.querySelector(div_selector + ' label');
