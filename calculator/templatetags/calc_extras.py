@@ -19,7 +19,7 @@ def get_class(value: str):
 
 
 @register.filter(is_safe=True, name='remove_number')
-def split_class(value: str):
+def remove_number(value: str):
     return value.rsplit('_', 1)[0]
 
 

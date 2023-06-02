@@ -22,7 +22,19 @@
 
                     {% csrf_token %}
                     {{ form.subject.errors }}
-                    <table class="table table-bordered col-12">
+                    <div class="container">
+                        <div class="row">
+                            <table id="from-table-1" class="col table-form table table-bordered">
+                                <tr>
+                                </tr>
+                            </table>
+                            <table id="from-table-2" class="col table-form table table-bordered">
+                                <tr>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <table class="table table-bordered col-12 hidden-form">
                         {% for field in form %}
                             {% if 'commodity' in field.html_name %}
                                 <tr id="commodity-tr">
@@ -32,7 +44,7 @@
 
                             {% else %}
                                 {% if '_1' in field.html_name %}
-                                    <tr id="{{ field.html_name|split_class }}-tr" class="table-row-hidden">
+                                    <tr id="{{ field.html_name|remove_number }}_tr" class="table-row-hidden">
                                 {% else %}
                                     <td class="empty"></td>
                                 {% endif %}

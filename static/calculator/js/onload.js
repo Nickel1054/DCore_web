@@ -23,5 +23,6 @@ function move_element(div_selector, dest_tr) {
     let div_element = document.querySelector(div_selector);
     jQuery(div_element).detach().appendTo(dest_tr + ' td.column-1');
 }
+// TODO create (or adapt) function for moving td`s from hidden table to form table.
 
 move_element('#commodity-div-id', '#commodity-tr');
