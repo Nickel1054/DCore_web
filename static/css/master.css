@@ -24,26 +24,22 @@ td.empty{
     width: 10%;
 }
 
-.table-form{
-    background-color: #4eff69;
+.table-row-hidden{
+    display: none;
+    height: 0;
 }
-
-/*.col-12{*/
-/*    background-color: red;*/
-/*}*/
-
-/*.col-6{*/
-/*    background-color: blue;*/
-/*}*/
-
-/*.select-hid{*/
-/*    visibility: hidden;*/
-/*    height: 0;*/
-/*}*/
 
 select{
+    width: 100%;
+}
+
+#form-table-1 td.label-1 {
     width: 50%;
 }
+
+/*#form-table-1 td span.select2-selection {*/
+/*    width: 100%;*/
+/*}*/
 
 /*tr.table-row-hidden{*/
 /*    display: none;*/

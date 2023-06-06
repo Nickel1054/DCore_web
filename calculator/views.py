@@ -19,11 +19,11 @@ def calculator_view(request):
         print('success')
         return render(request, 'base.html', {})
     form = CalculatorForm
-    return render(request, 'calculator0.html', {'form': form})
+    return render(request, 'calculator1.html', {'form': form})
 
 
 class CalculatorPage(FormView):
-    template_name = "calculator0.html"
+    template_name = "calculator1.html"
     form_class = CalculatorForm
     success_name = "result.html"
 

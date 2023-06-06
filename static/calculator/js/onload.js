@@ -16,13 +16,22 @@ let date_end_field2 = document.getElementById('id_period_deliveryend_2');
 // }
 
 function move_element(div_selector, dest_tr) {
-    let label_element = document.querySelector(div_selector + ' label');
-    jQuery(label_element).detach().appendTo(dest_tr + ' td.label-1');
+    let column = div_selector.slice(-1);
 
-    // console.log(label_element);
-    let div_element = document.querySelector(div_selector);
-    jQuery(div_element).detach().appendTo(dest_tr + ' td.column-1');
+    let element = document.querySelector(div_selector);
+    jQuery(element).detach().appendTo(dest_tr + ' tbody');
+    element.classList.add("my-class");
 }
-// TODO create (or adapt) function for moving td`s from hidden table to form table.
 
-move_element('#commodity-div-id', '#commodity-tr');
+function sort_tables() {
+    let table_1 = document.getElementById('form-table-1');
+    let table_2 = document.getElementById('form-table-2');
+
+    let form_rows = document.querySelectorAll('tr.table-row-hidden');
+
+    for (let element of form_rows) {
+        jQuery(element).detach().appendTo('#form-table-' + element.id.slice(-1));
+    }
+}
+// move_element('#exchange_gas_tr_1', '#form-table-1');
+sort_tables()
