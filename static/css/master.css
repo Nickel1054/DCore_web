@@ -12,17 +12,17 @@ ul {
 
 }
 
-#commodity-tr td.label-1 {
+#commodity-tr td.label-* {
     text-align: right;
 }
 
 td.label-*{
-    width: 15%;
-}
-
-td.empty{
     width: 10%;
 }
+
+/*td.empty{*/
+/*    width: 10%;*/
+/*}*/
 
 .table-row-hidden{
     display: none;
@@ -33,10 +33,26 @@ select{
     width: 100%;
 }
 
-#form-table-1 td.label-1 {
+#form-table-* td.label-* {
     width: 50%;
 }
 
+td{
+    height: 50px;
+}
+
+
+span.select2-selection__rendered{
+    width: 2.5in;
+}
+
+.table > :not(:first-child) {
+    border-top: 0;
+}
+
+#form-table-1{
+    border-right: 1px solid black;
+}
 /*#form-table-1 td span.select2-selection {*/
 /*    width: 100%;*/
 /*}*/

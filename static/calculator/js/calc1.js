@@ -9,7 +9,7 @@ function move_element_to_table(element, dest_tr) {
     let column_num = element.id.split('-')[0].slice(-1);
 
     let label_element = document.querySelector('#' + element.id + ' label');
-    console.log(dest_tr + ' td.label-' + column_num);
+    // console.log(dest_tr + ' td.label-' + column_num);
     jQuery(label_element).detach().appendTo('#' + dest_tr + '-tr' + ' td.label-' + column_num);
 
     // console.log(label_element);
@@ -23,7 +23,7 @@ function move_element_from_table(element) {
     let column_num = element.id.split('-')[0].slice(-1);
 
     let label_element = document.querySelector('#' + element.id + ' label');
-    console.log(dest_tr + ' td.label-' + column_num);
+    // console.log(dest_tr + ' td.label-' + column_num);
     jQuery(label_element).detach().appendTo('#' + dest_tr + '-tr' + ' td.label-' + column_num);
 
     // console.log(label_element);
@@ -33,7 +33,6 @@ function move_element_from_table(element) {
     document.querySelectorAll('#calculator-form table span.select2-container--default')[0].setAttribute('style', 'width: 100%')
 }
 
-// TODO: implement move_element to every change function to move elements in table and out of it.
 
 function make_vis(element) {
     if (element.classList.contains('table-row-hidden')) {
@@ -50,12 +49,13 @@ function make_invis(element) {
 }
 
 function make_invis_all(in_element = '') {
-    // let selector = ".select-div";
-    // if (in_element !== '') {
-    //     in_element = in_element.replace(' ', '.');
-    //     selector = "." + in_element;
-    // }
-    let selector = 'table.table-form tr.table-row-visible';
+    let selector;
+    if (in_element !== '') {
+        // in_element = in_element.replace(' ', '.');
+        selector = in_element;
+    } else {
+        selector = 'table.table-form tr.table-row-visible';
+    }
     let rows = document.querySelectorAll(selector);
 
     for (let r of rows) {
@@ -73,14 +73,43 @@ function disable_button() {
     btn.setAttribute('disabled', '');
 }
 
-function clear_fields_all() {
-    let selects = document.querySelectorAll("tr.table-row-hidden select");
+function clear_fields_all(selector_like = '') {
+    let selects;
+    if (selector_like !== '') {
+        selects = document.querySelectorAll(selector_like);
+    } else if (selector_like.startsWith('$')) {
+        selects = selector_like;
+    } else {
+        selects = document.querySelectorAll("tr.table-row-hidden select");
+    }
     selects.forEach(element => element.value = 'empty')
     let spans_titles = document.querySelectorAll('tr.table-row-hidden .select2-selection__rendered');
     spans_titles.forEach(element => {
         element.textContent = '--';
         element.title = '--';
     })
+}
+
+function equalize_table() {
+    document.querySelectorAll('.table-row-empty').forEach(element => element.remove());
+
+    let length_1 = document.querySelectorAll('#form-table-1 tr.table-row-visible').length
+    let length_2 = document.querySelectorAll('#form-table-2 tr.table-row-visible').length
+
+    if (length_1 !== length_2) {
+        let increase_tr_table;
+        if (length_1 > length_2) {
+            increase_tr_table = '2'
+        } else {
+            increase_tr_table = '1'
+        }
+        console.log(increase_tr_table);
+        let tr = document.createElement('tr');
+        tr.classList.add('table-row-visible', 'table-row-empty')
+
+        document.getElementById('form-table-' + increase_tr_table).appendChild(tr);
+    //     TODO write deletion function for 'table-row-empty'
+    }
 }
 
 function commodity_change() {
@@ -92,60 +121,64 @@ function commodity_change() {
         clear_fields_all();
     } else {
         let select_divs = null;
-        if (selected_value === 'gas') {
-            select_divs = document.querySelectorAll('[id^="exchange_gas_tr"]');
-        } else if (selected_value === 'electricity_spot') {
-            select_divs = document.querySelectorAll('[id^="exchange_ee_spot"]');
-        } else if (selected_value === 'electricity_futures') {
-            select_divs = document.querySelectorAll('[id^="exchange_ee_futures"]');
-        } else if (selected_value === 'co2') {
-            select_divs = document.querySelectorAll('[id^="exchange_co2"]');
+        switch (selected_value) {
+            case 'gas':
+                select_divs = document.querySelectorAll('[id^="exchange_gas_tr"]');
+                break;
+            case 'electricity_spot':
+                select_divs = document.querySelectorAll('[id^="exchange_ee_spot"]');
+                break;
+            case 'electricity_futures':
+                select_divs = document.querySelectorAll('[id^="exchange_ee_futures"]');
+                break;
+            case 'co2':
+                select_divs = document.querySelectorAll('[id^="exchange_co2"]');
+                break;
         }
         for (let i = 0; i < select_divs.length; i++) {
             make_vis(select_divs[i]);
             clear_fields_all();
         }
     }
+    button_change();
 }
-
-
 
 function gas_source_change(element_id) {
     let column_number = element_id.split('_').at(-1);
     let selected_value = document.getElementById(element_id).value;
-    // console.log(selected_value);
+    make_invis_all('.row-zone.tr-column-' + column_number);
     if (selected_value === 'empty') {
-        make_invis_all('select-zone select-column-' + column_number);
         clear_fields_all();
-    } else if (selected_value === 'icis') {
-        clear_fields_all();
-        make_invis_all('select-zone select-column-' + column_number);
-        // console.log('zone_icis_gas_' + column_number + '-div-id');
-        let select_div = document.getElementById('zone_icis_gas_' + column_number + '-div-id');
-        // console.log(select_div);
-        make_vis(select_div);
-    } else if (selected_value === 'eex') {
-        clear_fields_all();
-        make_invis_all('select-zone select-column-' + column_number);
-        let select_div = document.getElementById('zone_eex_gas_' + column_number + '-div-id');
-        // console.log(select_div.className);
-        make_vis(select_div);
+    } else {
+        if (selected_value === 'icis') {
+            clear_fields_all('.row-zone.tr-column-' + column_number);
+            make_invis_all('.row-zone.tr-column-' + column_number);
+
+            let select_div = document.getElementById('zone_icis_gas_tr_' + column_number);
+            make_vis(select_div);
+
+        } else if (selected_value === 'eex') {
+            clear_fields_all('.row-zone.tr-column-' + column_number);
+            make_invis_all('.row-zone.tr-column-' + column_number);
+
+            let select_div = document.getElementById('zone_eex_gas_tr_' + column_number);
+            make_vis(select_div);
+        }
+        button_change();
     }
-    button_change();
 }
 
 function ee_spot_source_change(element_id) {
     let column_number = element_id.split('_').at(-1);
     let selected_value = document.getElementById(element_id).value;
-    // console.log("SELECTED " + selected_value);
+    make_invis_all('.row-zone.tr-column-' + column_number);
     if (selected_value === 'empty') {
-        make_invis_all('select-zone select-column-' + column_number);
         clear_fields_all();
-    } else if (selected_value === 'spot') {
-        clear_fields_all();
-        make_invis_all('select-zone select-column-' + column_number);
-        let select_div = document.getElementById('zone_ee_spot_' + column_number + '-div-id');
-        // console.log("CLASS" + select_div.className);
+    } else {
+        clear_fields_all('.row-zone.tr-column-' + column_number);
+        make_invis_all('.row-zone.tr-column-' + column_number);
+
+        let select_div = document.getElementById('zone_ee_spot_tr_' + column_number);
         make_vis(select_div);
     }
     button_change();
@@ -154,96 +187,76 @@ function ee_spot_source_change(element_id) {
 function ee_futures_source_change(element_id) {
     let column_number = element_id.split('_').at(-1);
     let selected_value = document.getElementById(element_id).value;
-    // console.log("SELECTED " + selected_value);
+    make_invis_all('.row-zone.tr-column-' + column_number);
     if (selected_value === 'empty') {
-        make_invis_all('select-zone select-column-' + column_number);
         clear_fields_all();
-    } else if (selected_value === 'tge') {
-        clear_fields_all();
-        make_invis_all('select-zone select-column-' + column_number);
-        let select_div = document.getElementById('zone_ee_futures_tge_' + column_number + '-div-id');
-        // console.log("CLASS" + select_div.className);
-        make_vis(select_div);
-    } else if (selected_value === 'eex') {
-        clear_fields_all();
-        make_invis_all('select-zone select-column-' + column_number);
-        let select_div = document.getElementById('zone_ee_futures_eex_' + column_number + '-div-id');
-        // console.log("CLASS" + select_div.className);
-        make_vis(select_div);
+    } else {
+        if (selected_value === 'tge') {
+            clear_fields_all('.row-zone.tr-column-' + column_number);
+            make_invis_all('.row-zone.tr-column-' + column_number);
+
+            let select_div = document.getElementById('zone_ee_futures_tge_tr_' + column_number);
+            make_vis(select_div);
+
+        } else if (selected_value === 'eex') {
+            clear_fields_all('.row-zone.tr-column-' + column_number);
+            make_invis_all('.row-zone.tr-column-' + column_number);
+
+            let select_div = document.getElementById('zone_ee_futures_eex_tr_' + column_number);
+            make_vis(select_div);
+        }
+        button_change();
     }
-    button_change();
 }
 
 function co2_source_change(element_id) {
     let column_number = element_id.split('_').at(-1);
     let selected_value = document.getElementById(element_id).value;
-    // console.log("SELECTED " + selected_value);
+    make_invis_all('.row-zone.tr-column-' + column_number);
     if (selected_value === 'empty') {
-        make_invis_all('select-zone select-column-' + column_number);
         clear_fields_all();
-    } else if (selected_value === 'eex') {
-        make_invis_all('select-zone select-column-' + column_number);
-        let select_div = document.getElementById('zone_co2_' + column_number + '-div-id');
-        // console.log("CLASS" + select_div.className);
+    } else {
+        clear_fields_all('.row-zone.tr-column-' + column_number);
+        make_invis_all('.row-zone.tr-column-' + column_number);
+
+        let select_div = document.getElementById('zone_co2_tr_' + column_number);
         make_vis(select_div);
     }
     button_change();
 }
-
-
-// function clear_fields_all(field_level, column) {
-//     let zones;
-//     if (field_level === 'source') {
-//         zones = document.querySelectorAll('.select-exchange select');
-//         // console.log(zones);
-//     } else if (field_level === 'zone') {
-//         zones = document.querySelectorAll('.select-zone.select-column-' + column + ' select');
-//     } else {
-//
-//         zones = document.querySelectorAll('.select2-hidden-accessible select');
-//         // zones = document.querySelectorAll('.select-' + field_level + '.select-column-' + column + ' select');
-//     }
-//     // console.log('ZONES TO CLEAR:');
-//     console.log(zones);
-//     zones.forEach(element => element.value = 'empty');
-// }
 
 function zone_change(element_id) {
     let zone = document.getElementById(element_id).value
     let column_number = element_id.split('_').at(-1);
     // console.log(column_number);
     let commodity = document.getElementById('id_commodity').value;
-    let source = document.querySelector('.select-exchange.select-vis.select-column-' + column_number + ' select').value;
+    let source = document.querySelector('.row-exchange.table-row-visible.tr-column-' + column_number + ' select').value;
+    // console.log(commodity, source);
     clear_fields_all();
-    // console.log('zone changed');
     if (['electricity_futures'].indexOf(commodity) >= 0) {
         // console.log('ee');
-        let loads = document.getElementById('load_type_' + column_number + '-div-id');
-        make_invis_all('select-load select-column-' + column_number);
+        let loads = document.getElementById('load_type_tr_' + column_number);
+        make_invis_all('.row-product.tr-column-' + column_number);
 
         if (zone !== 'empty') {
-            make_invis_all('select-load select-column-' + column_number);
             make_vis(loads);
         }
     }
-    // console.log('passed');
+    make_invis_all('.row-product.tr-column-' + column_number);
     if (zone === 'empty') {
-        // console.log('empty');
-        make_invis_all('select-product select-column-' + column_number);
         clear_fields_all();
     } else {
-        make_invis_all('select-product select-column-' + column_number);
         let select_div;
         if (commodity === 'co2') {
-            select_div = document.getElementById('product_types_co2_' + column_number + '-div-id');
+            select_div = document.getElementById('product_types_co2_tr_' + column_number);
         } else {
-            select_div = document.getElementById('product_types_' + source + '_' + column_number + '-div-id');
+            select_div = document.getElementById('product_types_' + source + '_tr_' + column_number);
         }
         // console.log('product_types_' + source + '_' + column_number + '-div-id');
         make_vis(select_div);
 
     }
-    button_change()
+    button_change();
 }
 
 function product_change(element_id) {
@@ -262,51 +275,51 @@ function product_change(element_id) {
     let commodity = document.getElementById('id_commodity').value;
     let product = document.getElementById(element_id).value;
     let column_number = element_id.split('_').at(-1);
-    let source = document.querySelector('.select-vis.select-exchange.select-column-' + column_number + ' select').value
-    // console.log('PRODUCT: ' + product);
-    clear_fields_all()
-    make_invis_all('select-period select-column-' + column_number);
+    let source = document.querySelector('.row-exchange.table-row-visible.tr-column-' + column_number + ' select').value;
+    clear_fields_all();
+    make_invis_all('.row-period.tr-column-' + column_number);
     if (product !== 'empty') {
         if (product === 'day' || product === 'da') {
             if (source === 'eex' || commodity === 'gas') {
-                let select_div = document.getElementById(product_dict['day_eex'] + column_number + '-div-id');
+                let select_div = document.getElementById(product_dict['day_eex'] + 'tr_' + column_number);
                 // console.log(element + column_number + '-div-id');
                 make_vis(select_div);
             } else {
+                console.log(product_dict[product]);
                 for (let element of product_dict[product]) {
-                    let select_div = document.getElementById(element + column_number + '-div-id');
-                    // console.log(element + column_number + '-div-id');
+                    let select_div = document.getElementById(element + 'tr_' + column_number);
+                    console.log(element + 'tr_' + column_number);
                     make_vis(select_div);
                 }
             }
         } else {
-            let select_div = document.getElementById(product_dict[product] + column_number + '-div-id');
-            // console.log(product_dict[product] + column_number + '-div-id');
+            let select_div = document.getElementById(product_dict[product] + 'tr_' + column_number);
+            // console.log(product_dict[product] +'tr_' + column_number);
             make_vis(select_div);
         }
     }
-    let delivery_year = document.getElementById('year_' + column_number + '-div-id');
+    let delivery_year = document.getElementById('year_tr_' + column_number);
     make_invis(delivery_year);
     clear_fields_all();
-    button_change()
+    button_change();
 }
 
 function delivery_period_change(element_id) {
     let delivery_period = document.getElementById(element_id).value;
     let column_number = element_id.split('_').at(-1);
-    let product_type = document.querySelector('.select-product.select-vis.select-column-' + column_number + ' select').value;
+    let product_type = document.querySelector('.row-product.table-row-visible.tr-column-' + column_number + ' select').value;
     // console.log(delivery_period);
     // console.log(product_type);
     clear_fields_all()
     // make_invis_all('select-period select-column-' + column_number);
-    make_invis_all('select-year select-column-' + column_number);
+    make_invis_all('row-year tr-column-' + column_number);
 
-    let del_start = document.getElementById('period_deliverystart_' + column_number + '-div-id');
-    let del_end = document.getElementById('period_deliveryend_' + column_number + '-div-id');
+    let del_start = document.getElementById('period_deliverystart_tr_' + column_number);
+    let del_end = document.getElementById('period_deliverystart_tr_' + column_number);
     make_invis(del_start);
     make_invis(del_end);
 
-    let year_field = document.getElementById('year_' + column_number + '-div-id');
+    let year_field = document.getElementById('year_tr_' + column_number);
     if (['week', 'weekend', 'month', 'quarter', 'season',].includes(product_type) && delivery_period !== 'empty') {
         make_vis(year_field);
     } else {
@@ -314,7 +327,6 @@ function delivery_period_change(element_id) {
         clear_fields_all();
     }
     button_change();
-
 
     // if (delivery_period !== 'empty' && delivery_period !== '') {
     //
@@ -352,7 +364,7 @@ function button_change() {
     }
 
     // console.log('1:');
-    console.log(form_filled_1);
+    // console.log(form_filled_1);
     // console.log(Object.keys(form_filled_1).length);
     // console.log('2:');
     // console.log(form_filled_2);
@@ -407,13 +419,14 @@ function button_change() {
             }
         }
     }
-    console.log('COUNT');
-    console.log(count);
+    console.log('COUNT', count);
+    // console.log(count);
     if (count === 2) {
         enable_button()
     } else {
         disable_button();
     }
+    equalize_table();
 }
 
 function check_dates(element_id) {

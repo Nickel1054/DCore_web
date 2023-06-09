@@ -11,105 +11,84 @@
             $("select").select2();
         });
     </script>
+    <script>
+        function reload() {
+            location.reload();
+            {#window.location.reload();#}
+            {#history.go(0);#}
+            {#location.assign(location.href);#}
+            {#let loc = window.location;#}
+            {#window.location = loc.protocol + '//' + loc.host + loc.pathname + loc.search;#}
+        }
+    </script>
     <div class="h-100 p-5 bg-light border rounded-3">
         <h1>Calculator</h1><br>
-        <div class="row">
-            <div class="col-12">
+        {#        <div class="row">#}
+        <div class="col-12">
 
-                {{ form.non_field_errors }}
-                <form id="calculator-form" method="post">
-                    {#                                                                         TODO Add table here for equal heights #}
+            {{ form.non_field_errors }}
+            <form id="calculator-form" method="post">
+                {#                                                                         TODO Add table here for equal heights #}
 
-                    {% csrf_token %}
-                    {{ form.subject.errors }}
-                        <div class="container table-div">
-                        <table class="table table-bordered col-12">
-                    {% for field in form %}
-                        {% if 'commodity' in field.html_name %}
-                            <div class="row">
-                                <div class='col-12 select-vis' id="{{ field.html_name|remove_number }}-div-id">
-                                    {{ field.label_tag }}
-                                    {{ field }}
-                                </div>
-                            </div>
-                        {% else %}
-                            {% if '_1' in field.html_name %}
-                                <div class="row">
-                            {% endif %}
+                {% csrf_token %}
+                {{ form.subject.errors }}
 
-                        <div class='col-6 select-hid select-div select-{{ field.html_name|split_class }} select-column-{{ field.html_name|get_column_number }}'
-                             id="{{ field.html_name }}-div-id">
-
-                            {{ field.label_tag }}
-                            {{ field }}
-
-                            {% if '_2' in field.html_name %}
-                                </div>
-                            {% endif %}
-
-                        </div>
-
-                        {% endif %}
-                    {% endfor %}
-                    <div class="container table-div">
-
-                        <table class="table table-bordered col-12">
+                {#                    <table class="table table-bordered col-12 hidden-form">#}
+                {% for field in form %}
+                    {% if 'commodity' in field.html_name %}
+                        <table class="col-12 hidden-form table-commodity">
                             <tr id="commodity-tr">
-                                <td class="label-1" colspan="2"></td>
-                                <td class="column-1" colspan="3"></td>
-                            </tr>
-                            <tr id="source-tr" class="table-row-hidden">
-                                <td class="label-1"></td>
-                                <td class="column-1"></td>
-                                <td class="empty"></td>
-                                <td class="label-2"></td>
-                                <td class="column-2"></td>
-                            </tr>
-                            <tr id="zone-tr" class="table-row-hidden" style="display:none;">
-                                <td class="label-1"></td>
-                                <td class="column-1">AAAA</td>
-                                <td class="empty"></td>
-                                <td class="label-2"></td>
-                                <td class="column-2"></td>
-                            </tr>
-                            <tr id="load-tr" class="table-row-hidden">
-                                <td class="label-1"></td>
-                                <td class="column-1"></td>
-                                <td class="empty"></td>
-                                <td class="label-2"></td>
-                                <td class="column-2"></td>
-                            </tr>
-                            <tr id="product-type-tr" class="table-row-hidden">
-                                <td class="label-1"></td>
-                                <td class="column-1"></td>
-                                <td class="empty"></td>
-                                <td class="label-2"></td>
-                                <td class="column-2"></td>
-                            </tr>
-                            <tr id="product-type-sub-1-tr" class="table-row-hidden">
-                                <td class="label-1"></td>
-                                <td class="column-1"></td>
-                                <td class="empty"></td>
-                                <td class="label-2"></td>
-                                <td class="column-2"></td>
-                            </tr>
-                            <tr id="product-type-sub-2-tr" class="table-row-hidden">
-                                <td class="label-1"></td>
-                                <td class="column-1"></td>
-                                <td class="empty"></td>
-                                <td class="label-2"></td>
-                                <td class="column-2"></td>
+                                <td class="label-1">{{ field.label_tag }}</td>
+                                <td class="column-1">{{ field }}</td>
                             </tr>
                         </table>
+
+                    {% else %}
+                        {% if forloop.counter == 2 %}
+                            <table id="hidden-table" class="col-12 hidden-form">
+                        {% endif %}
+                        <tr id="{{ field.html_name|remove_number }}_tr_{{ field.html_name|get_column_number }}"
+                            class="table-row-hidden  tr-column-{{ field.html_name|get_column_number }} row-{{ field.html_name|split_class }}">
+                            <td class="label-{{ field.html_name|get_column_number }}">{{ field.label_tag }}</td>
+                            <td class="column-{{ field.html_name|get_column_number }}">{{ field }}</td>
+                        </tr>
+                    {% endif %}
+
+                {% endfor %}
+                <tr id="test1"></tr>
+
+                </table>
+
+                <div class="container table-div">
+                    <div class="container">
+                        <div class="row">
+                            <table id="form-table-1" class="table col table-form">
+                            </table>
+                            <div id="empty-div" class="col-1"></div>
+                            <table id="form-table-2" class="table col table-form">
+                            </table>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-4">
-                            <input class="btn btn-primary" id="submit-btn" type="submit" value="Submit" disabled>
+                            <input class="btn btn-outline-primary" id="submit-btn" type="submit" value="Submit" disabled>
+                        </div>
+
+                        <div class="col-6"></div>
+
+                        <div class="col-2">
+                            <a href="{% url "home-calc" %}">
+                                <button class="btn btn-outline-danger" type="button" id="reset-btn">Reset Form</button>
+                            </a>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+
+            </form>
+
         </div>
+
+        {#        </div>#}
 
     </div>
     <script src={% static 'calculator/js/onload.js' %}></script>
