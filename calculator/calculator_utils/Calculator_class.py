@@ -258,6 +258,24 @@ class Calculator:
         df['delta'] = df['price_1'] - df['price_2']
         return df
 
+    def rename_columns(self, df):
+        form1 = {}
+        form2 = {}
+        for key, value in self.form_1.items():
+            form1[key.split('_')[0]] = value
+
+        for key, value in self.form_2.items():
+            form2[key.split('_')[0]] = value
+
+        df.rename(columns={
+            'price_1': f"{form1['zone'].upper()} {form1['period'].title()} {form1['year']} ({form1['commodity'].upper()} {form1['exchange'].upper()})",
+            'price_2': f"{form2['zone'].upper()} {form2['period'].title()} {form2['year']} ({form2['commodity'].upper()} {form2['exchange'].upper()})"}
+            , inplace=True)
+
+# TODO unify for all variants
+
+        return df
+
     def run(self):
         df_1 = self.get_data_for_form(self.form_1)
         df_2 = self.get_data_for_form(self.form_2)
@@ -269,8 +287,11 @@ class Calculator:
         df_2['trading_date'] = pd.to_datetime(df_2['trading_date'])
         df = self.merge_dfs(df_1, df_2)
         df = df[['trading_date', 'price_1', 'price_2', 'delta', 'delivery_year']]
+        df = self.rename_columns(df)
         df['trading_date'] = df['trading_date'].astype('str')
         df = df.round(decimals=3)
+        df.rename(columns={'trading_date': 'Trading Date', 'delta': 'Delta', 'delivery_year': 'Delivery Year'},
+                  inplace=True)
         return df
 
     def rename_df(self, df):
