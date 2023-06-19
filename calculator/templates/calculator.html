@@ -71,25 +71,19 @@
                     </div>
                     <div class="row">
                         <div class="col-4">
-                            <input class="btn btn-outline-primary" id="submit-btn" type="submit" value="Submit" disabled>
-                        </div>
-
-                        <div class="col-6"></div>
-
-                        <div class="col-2">
                             <a href="{% url "home-calc" %}">
                                 <button class="btn btn-outline-danger" type="button" id="reset-btn">Reset Form</button>
                             </a>
                         </div>
+                        <div class="col-6"></div>
+                        <div class="col-2">
+                            <input class="btn btn-outline-primary" id="submit-btn" type="submit" value="Submit"
+                                   disabled>
+                        </div>
                     </div>
                 </div>
-
             </form>
-
         </div>
-
-        {#        </div>#}
-
     </div>
     <script src={% static 'calculator/js/onload.js' %}></script>
 

@@ -262,18 +262,47 @@ class Calculator:
         form1 = {}
         form2 = {}
         for key, value in self.form_1.items():
-            form1[key.split('_')[0]] = value
+            if key in ['period_deliverystart', 'period_deliveryend']:
+                form1[key] = value
+            else:
+                form1[key.split('_')[0]] = value
 
         for key, value in self.form_2.items():
-            form2[key.split('_')[0]] = value
+            if key in ['period_deliverystart', 'period_deliveryend']:
+                form2[key] = value
+            else:
+                form2[key.split('_')[0]] = value
 
-        df.rename(columns={
-            'price_1': f"{form1['zone'].upper()} {form1['period'].title()} {form1['year']} ({form1['commodity'].upper()} {form1['exchange'].upper()})",
-            'price_2': f"{form2['zone'].upper()} {form2['period'].title()} {form2['year']} ({form2['commodity'].upper()} {form2['exchange'].upper()})"}
-            , inplace=True)
+        if 'year' in form1:
+            df.rename(columns={
+                'price_1': f"{form1['zone'].upper()} {form1['product'].title()} {form1['period'].title()} ({form1['commodity'].upper()} {form1['exchange'].upper()})", }
+                , inplace=True)
+        elif 'period_deliverystart' in form1 and 'period_deliveryend' in form1:
+            df.rename(columns={
+                'price_1': f"{form1['zone'].upper()} \"{str(form1['period_deliverystart'])}\" - \"{str(form1['period_deliveryend'])}\" ({form1['exchange'].upper()})", }
+                , inplace=True)
+        else:
+            df.rename(columns={
+                'price_1': f"{form1['zone'].upper()} {form1['product'].title()} {form1['period'].title()} ({form1['commodity'].upper()} {form1['exchange'].upper()})", }
+                , inplace=True)
 
-# TODO unify for all variants
+        if 'year' in form2:
+            df.rename(columns={
+                'price_2': f"{form2['zone'].upper()} {form2['period'].title().replace('_', ' ')} {form2['year']} ({form2['commodity'].upper()} {form2['exchange'].upper()})"},
+                inplace=True)
+        elif 'period_deliverystart' in form1 and 'period_deliveryend' in form1:
+            df.rename(columns={
+                'price_2': f"{form2['zone'].upper()} \"{str(form2['period_deliverystart'])}\" - \"{str(form2['period_deliveryend'])}\" ({form2['exchange'].upper()})", }
+                , inplace=True)
+        else:
+            df.rename(columns={
+                'price_2': f"{form2['zone'].upper()} {form2['product'].title()} {form2['period'].title()} ({form2['commodity'].upper()} {form2['exchange'].upper()})"},
+                inplace=True)
 
+        df.rename(columns=lambda s: s.replace("Week", "Week "), inplace=True)
+        df.rename(columns=lambda s: s.replace("Week end", "Weekend "), inplace=True)
+
+        # TODO unify for all variants
         return df
 
     def run(self):

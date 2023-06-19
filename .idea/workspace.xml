@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64013729-3444-4eeb-b777-d1d9c66219ea" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e0544af1-2098-4324-9336-e98dcd265337/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/calculator_utils/Calculator_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/calculator_utils/Calculator_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/templates/calculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/templates/calculator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,7 +258,8 @@
       <workItem from="1686049924089" duration="11120000" />
       <workItem from="1686118385899" duration="19873000" />
       <workItem from="1686223038608" duration="3149000" />
-      <workItem from="1686291011836" duration="9734000" />
+      <workItem from="1686291011836" duration="9807000" />
+      <workItem from="1686743423807" duration="6940000" />
     </task>
     <servers />
   </component>
@@ -308,16 +312,6 @@
           <url>file://$PROJECT_DIR$/calculator/dict_data/form_values.py</url>
           <line>266</line>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/calculator/views.py</url>
-          <line>41</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/calculator/calculator_utils/Calculator_class.py</url>
-          <line>276</line>
-          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
