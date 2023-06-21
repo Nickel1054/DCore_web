@@ -273,34 +273,76 @@ class Calculator:
             else:
                 form2[key.split('_')[0]] = value
 
-        if 'year' in form1:
-            df.rename(columns={
-                'price_1': f"{form1['zone'].upper()} {form1['product'].title()} {form1['period'].title()} ({form1['commodity'].upper()} {form1['exchange'].upper()})", }
-                , inplace=True)
-        elif 'period_deliverystart' in form1 and 'period_deliveryend' in form1:
-            df.rename(columns={
-                'price_1': f"{form1['zone'].upper()} \"{str(form1['period_deliverystart'])}\" - \"{str(form1['period_deliveryend'])}\" ({form1['exchange'].upper()})", }
-                , inplace=True)
-        else:
-            df.rename(columns={
-                'price_1': f"{form1['zone'].upper()} {form1['product'].title()} {form1['period'].title()} ({form1['commodity'].upper()} {form1['exchange'].upper()})", }
-                , inplace=True)
+        for column, form_iter in zip(['price_1', 'price_2'], [form1, form2]):
 
-        if 'year' in form2:
-            df.rename(columns={
-                'price_2': f"{form2['zone'].upper()} {form2['period'].title().replace('_', ' ')} {form2['year']} ({form2['commodity'].upper()} {form2['exchange'].upper()})"},
-                inplace=True)
-        elif 'period_deliverystart' in form1 and 'period_deliveryend' in form1:
-            df.rename(columns={
-                'price_2': f"{form2['zone'].upper()} \"{str(form2['period_deliverystart'])}\" - \"{str(form2['period_deliveryend'])}\" ({form2['exchange'].upper()})", }
-                , inplace=True)
-        else:
-            df.rename(columns={
-                'price_2': f"{form2['zone'].upper()} {form2['product'].title()} {form2['period'].title()} ({form2['commodity'].upper()} {form2['exchange'].upper()})"},
-                inplace=True)
+            load = ""
+            if 'load' in form_iter:  # for electricity
+                load = f"{form_iter['load'].title()} "
 
-        df.rename(columns=lambda s: s.replace("Week", "Week "), inplace=True)
-        df.rename(columns=lambda s: s.replace("Week end", "Weekend "), inplace=True)
+            # product DA (deliverystart and deliveryend)
+            if form_iter['product'] == 'da' and 'period_deliverystart' in form_iter and 'period_deliveryend' in form_iter:
+                df.rename(columns={
+                    column: f"{form_iter['zone'].upper()} {load}\'{form_iter['period_deliverystart']}\' - {form_iter['period_deliveryend']}\'"}
+                    , inplace=True)
+
+            # product DAY (1 day in delivery)
+            if form_iter['product'] == 'day' and 'period_deliverystart' in form_iter:
+                df.rename(columns={
+                    column: f"{form_iter['zone'].upper()} {load}\'{form_iter['period_deliverystart']}\' (Source: {form_iter['exchange'].upper()})"}
+                    , inplace=True)
+
+            # product Week Weekend
+            elif form_iter['product'] in ('week', 'weekend'):
+                df.rename(columns={
+                    column: f"{form_iter['zone'].upper()} {load}{form_iter['product'].title()} {form_iter['period'].replace(form_iter['product'], '')} {form_iter['year']} (Source: {form_iter['exchange'].upper()})"},
+                    inplace=True)
+
+            # product Month Quarter Season
+            elif form_iter['product'] in ('month', 'quarter', 'season'):
+                df.rename(columns={
+                    column: f"{form_iter['zone'].upper()} {load}{form_iter['period'].title().replace('_', ' ')} {form_iter['year']} (Source: {form_iter['exchange'].upper()})"},
+                    inplace=True)
+
+            # product Year
+            elif form_iter['product'] == 'year':
+                df.rename(columns={
+                    column: f"{form_iter['zone'].upper()} {load}{form_iter['product'].title()} {form_iter['period'].title().replace('_', ' ')} (Source: {form_iter['exchange'].upper()})"}
+                    , inplace=True)
+
+            # product Gas Year
+            elif form_iter['product'] == 'gas_year':
+                df.rename(columns={
+                    column: f"{form_iter['zone'].upper()} {load}{form_iter['period'].title().replace('_', ' ')} (Source: {form_iter['exchange'].upper()})"}
+                    , inplace=True)
+                # elif 'year' in form_iter:
+                #     df.rename(columns={
+                #         column: f"{form_iter['zone'].upper()} {form_iter['product'].title()} {form_iter['period'].title()} ({form_iter['commodity'].upper()} {form_iter['exchange'].upper()})", }
+                #         , inplace=True)
+                # elif 'period_deliverystart' in form_iter and 'period_deliveryend' in form_iter:
+                #     df.rename(columns={
+                #         column: f"{form_iter['zone'].upper()} \"{str(form_iter['period_deliverystart'])}\" - \"{str(form_iter['period_deliveryend'])}\" ({form_iter['exchange'].upper()})", }
+                #         , inplace=True)
+                # else:
+                #     df.rename(columns={
+                #         column: f"{form_iter['zone'].upper()} {form_iter['product'].title()} {form_iter['period'].title()} ({form_iter['commodity'].upper()} {form_iter['exchange'].upper()})", }
+                #         , inplace=True)
+        # print(111)
+
+        # if 'year' in form2:
+        #     df.rename(columns={
+        #         'price_2': f"{form2['zone'].upper()} {form2['period'].title().replace('_', ' ')} {form2['year']} ({form2['commodity'].upper()} {form2['exchange'].upper()})"},
+        #         inplace=True)
+        # elif 'period_deliverystart' in form1 and 'period_deliveryend' in form1:
+        #     df.rename(columns={
+        #         'price_2': f"{form2['zone'].upper()} \"{str(form2['period_deliverystart'])}\" - \"{str(form2['period_deliveryend'])}\" ({form2['exchange'].upper()})", }
+        #         , inplace=True)
+        # else:
+        #     df.rename(columns={
+        #         'price_2': f"{form2['zone'].upper()} {form2['product'].title()} {form2['period'].title()} ({form2['commodity'].upper()} {form2['exchange'].upper()})"},
+        #         inplace=True)
+
+        # df.rename(columns=lambda s: s.replace("Week", "Week "), inplace=True)
+        # df.rename(columns=lambda s: s.replace("Week end", "Weekend "), inplace=True)
 
         # TODO unify for all variants
         return df
@@ -321,7 +363,7 @@ class Calculator:
         df = df.round(decimals=3)
         df.rename(columns={'trading_date': 'Trading Date', 'delta': 'Delta', 'delivery_year': 'Delivery Year'},
                   inplace=True)
-        return df
+        return df, self.form_1['commodity'].upper() + '_spread_'
 
     def rename_df(self, df):
 
@@ -335,21 +377,23 @@ class Calculator:
 
 
 if __name__ == '__main__':
-    form = {'commodity': 'co2', 'exchange_gas_1': 'empty', 'exchange_gas_2': 'empty', 'exchange_ee_spot_1': 'empty',
-            'exchange_ee_spot_2': 'empty', 'exchange_ee_futures_1': 'empty', 'exchange_ee_futures_2': 'empty',
-            'exchange_co2_1': 'eex', 'exchange_co2_2': 'eex', 'zone_icis_gas_1': 'empty', 'zone_icis_gas_2': 'empty',
-            'zone_eex_gas_1': 'empty', 'zone_eex_gas_2': 'empty', 'zone_ee_spot_1': 'empty', 'zone_ee_spot_2': 'empty',
+    form = {'commodity': 'electricity_spot', 'exchange_gas_1': 'empty', 'exchange_gas_2': 'empty',
+            'exchange_ee_spot_1': 'spot', 'exchange_ee_spot_2': 'spot', 'exchange_ee_futures_1': 'empty',
+            'exchange_ee_futures_2': 'empty', 'exchange_co2_1': 'empty', 'exchange_co2_2': 'empty',
+            'zone_icis_gas_1': 'empty', 'zone_icis_gas_2': 'empty', 'zone_eex_gas_1': 'empty',
+            'zone_eex_gas_2': 'empty', 'zone_ee_spot_1': 'de_lu', 'zone_ee_spot_2': 'fr',
             'zone_ee_futures_tge_1': 'empty', 'zone_ee_futures_tge_2': 'empty', 'zone_ee_futures_eex_1': 'empty',
-            'zone_ee_futures_eex_2': 'empty', 'zone_co2_1': 'eua', 'zone_co2_2': 'eua', 'load_type_1': 'empty',
+            'zone_ee_futures_eex_2': 'empty', 'zone_co2_1': 'empty', 'zone_co2_2': 'empty', 'load_type_1': 'empty',
             'load_type_2': 'empty', 'product_types_eex_1': 'empty', 'product_types_eex_2': 'empty',
             'product_types_icis_1': 'empty', 'product_types_icis_2': 'empty', 'product_types_tge_1': 'empty',
-            'product_types_tge_2': 'empty', 'product_types_spot_1': 'empty', 'product_types_spot_2': 'empty',
-            'product_types_co2_1': 'month', 'product_types_co2_2': 'month', 'period_week_1': 'empty',
+            'product_types_tge_2': 'empty', 'product_types_spot_1': 'da', 'product_types_spot_2': 'da',
+            'product_types_co2_1': 'empty', 'product_types_co2_2': 'empty', 'period_week_1': 'empty',
             'period_week_2': 'empty', 'period_weekend_1': 'empty', 'period_weekend_2': 'empty',
-            'period_month_1': 'january', 'period_month_2': 'january', 'period_quarter_1': 'empty',
+            'period_month_1': 'empty', 'period_month_2': 'empty', 'period_quarter_1': 'empty',
             'period_quarter_2': 'empty', 'period_season_1': 'empty', 'period_season_2': 'empty',
             'period_year_1': 'empty', 'period_year_2': 'empty', 'period_gas_year_1': 'empty',
-            'period_gas_year_2': 'empty', 'year_1': '2023', 'year_2': '2022', 'period_deliverystart_1': None,
-            'period_deliverystart_2': None, 'period_deliveryend_1': None, 'period_deliveryend_2': None}
+            'period_gas_year_2': 'empty', 'year_1': 'empty', 'year_2': 'empty',
+            'period_deliverystart_1': datetime.date(2023, 6, 1), 'period_deliverystart_2': datetime.date(2023, 6, 1),
+            'period_deliveryend_1': datetime.date(2023, 6, 15), 'period_deliveryend_2': datetime.date(2023, 6, 15)}
 
     a = Calculator(form).run()

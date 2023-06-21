@@ -75,7 +75,7 @@ DAM_ZONES = {
 
 FUTURES = {
     'tge': [
-        ('empty', '--'), ('tge', 'PL')
+        ('empty', '--'), ('pl', 'PL')
     ],
     'eex': [
         ('empty', '--'), ('at', 'AT'), ('be', 'BE'), ('bg', 'BG'), ('ch', 'CH'), ('cz', 'CZ'), ('de', 'DE'),

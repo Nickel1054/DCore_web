@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from .calculator_utils.Calculator_class import *
 from django.http import HttpResponse
 from io import BytesIO
+import datetime
 import json
 
 # Create your views here.
@@ -38,8 +39,10 @@ class CalculatorPage(FormView):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            df = Calculator(form.cleaned_data).run()
+            df, excel_name = Calculator(form.cleaned_data).run()
             request.session['data'] = df.to_json()
+            request.session['excel_name'] = excel_name + datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+            # TODO add timezone
             # <process form cleaned data>
             print('REDIRECTING')
             # return HttpResponseRedirect('success/')
@@ -57,7 +60,7 @@ def download_view(request):
         df.to_excel(writer, sheet_name='Sheet1', index=False)
         writer.close()
         # Set up the Http response.
-        filename = 'django_simple.xlsx'
+        filename = request.session['excel_name'] + '.xlsx'
         response = HttpResponse(
             b.getvalue(),
             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
