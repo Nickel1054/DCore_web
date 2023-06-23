@@ -369,3 +369,5 @@ if __name__ == '__main__':
             'period_deliveryend_1': datetime.date(2023, 6, 15), 'period_deliveryend_2': datetime.date(2023, 6, 15)}
 
     a = Calculator(form).run()
+
+    # TODO add login and password settings
