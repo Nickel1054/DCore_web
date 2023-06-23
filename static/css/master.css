@@ -1,4 +1,28 @@
-ul {
+body {
+    background: url("/static/img/wave-pattern-v2-01.png") 50% 0 no-repeat fixed;
+    background-size: cover;
+}
+
+
+div.body-block{
+    opacity: 90%;
+}
+
+.table-title{
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+}
+
+#commodity-tr{
+    font-size: large;
+}
+
+#id_commodity .select2-selection{
+    text-align: left;
+}
+
+ul.nav {
     background-color: rgb(254, 209, 0);
 }
 
@@ -10,6 +34,11 @@ ul {
     position: relative;
     top: 25px;
 
+}
+
+span.helptext{
+    color: #808080;
+    font-size: small;
 }
 
 #commodity-tr td.label-* {

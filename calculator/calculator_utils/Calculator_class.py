@@ -314,37 +314,9 @@ class Calculator:
                 df.rename(columns={
                     column: f"{form_iter['zone'].upper()} {load}{form_iter['period'].title().replace('_', ' ')} (Source: {form_iter['exchange'].upper()})"}
                     , inplace=True)
-                # elif 'year' in form_iter:
-                #     df.rename(columns={
-                #         column: f"{form_iter['zone'].upper()} {form_iter['product'].title()} {form_iter['period'].title()} ({form_iter['commodity'].upper()} {form_iter['exchange'].upper()})", }
-                #         , inplace=True)
-                # elif 'period_deliverystart' in form_iter and 'period_deliveryend' in form_iter:
-                #     df.rename(columns={
-                #         column: f"{form_iter['zone'].upper()} \"{str(form_iter['period_deliverystart'])}\" - \"{str(form_iter['period_deliveryend'])}\" ({form_iter['exchange'].upper()})", }
-                #         , inplace=True)
-                # else:
-                #     df.rename(columns={
-                #         column: f"{form_iter['zone'].upper()} {form_iter['product'].title()} {form_iter['period'].title()} ({form_iter['commodity'].upper()} {form_iter['exchange'].upper()})", }
-                #         , inplace=True)
-        # print(111)
+        col_dict = {0: '', 1: ' BUY', 2: ' SELL', 3: '', 4: ''}
 
-        # if 'year' in form2:
-        #     df.rename(columns={
-        #         'price_2': f"{form2['zone'].upper()} {form2['period'].title().replace('_', ' ')} {form2['year']} ({form2['commodity'].upper()} {form2['exchange'].upper()})"},
-        #         inplace=True)
-        # elif 'period_deliverystart' in form1 and 'period_deliveryend' in form1:
-        #     df.rename(columns={
-        #         'price_2': f"{form2['zone'].upper()} \"{str(form2['period_deliverystart'])}\" - \"{str(form2['period_deliveryend'])}\" ({form2['exchange'].upper()})", }
-        #         , inplace=True)
-        # else:
-        #     df.rename(columns={
-        #         'price_2': f"{form2['zone'].upper()} {form2['product'].title()} {form2['period'].title()} ({form2['commodity'].upper()} {form2['exchange'].upper()})"},
-        #         inplace=True)
-
-        # df.rename(columns=lambda s: s.replace("Week", "Week "), inplace=True)
-        # df.rename(columns=lambda s: s.replace("Week end", "Weekend "), inplace=True)
-
-        # TODO unify for all variants
+        df.columns = [str(col) + col_dict[df.columns.tolist().index(col)] for col in df.columns]
         return df
 
     def run(self):
@@ -361,7 +333,7 @@ class Calculator:
         df = self.rename_columns(df)
         df['trading_date'] = df['trading_date'].astype('str')
         df = df.round(decimals=3)
-        df.rename(columns={'trading_date': 'Trading Date', 'delta': 'Delta', 'delivery_year': 'Delivery Year'},
+        df.rename(columns={'trading_date': 'Trading Date', 'delta': 'Spread', 'delivery_year': 'Delivery Year'},
                   inplace=True)
         return df, self.form_1['commodity'].upper() + '_spread_'
 

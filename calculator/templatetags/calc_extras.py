@@ -13,6 +13,11 @@ def class_visible(value: str):
     return 'select-vis' in value.__class__.__name__
 
 
+@register.filter(is_safe=True, name='get_username')
+def get_username(value):
+    return value.username.split('@')[0]
+
+
 @register.filter(is_safe=True, name='get_class')
 def get_class(value: str):
     return value.__class__.__name__

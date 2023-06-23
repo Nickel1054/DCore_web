@@ -33,10 +33,13 @@
                     {% if 'commodity' in field.html_name %}
                         <table class="col-12 hidden-form table-commodity">
                             <tr id="commodity-tr">
-                                <td class="label-1">{{ field.label_tag }}</td>
-                                <td class="column-1">{{ field }}</td>
+                                <td class="col-3"></td>
+                                <td class="label-1 col-3">{{ field.label_tag }}</td>
+                                <td class="column-1 col-3">{{ field }}</td>
+                                <td class="col-3"></td>
                             </tr>
                         </table>
+                        <hr>
 
                     {% else %}
                         {% if forloop.counter == 2 %}
@@ -56,6 +59,15 @@
 
                 <div class="container table-div">
                     <div class="container">
+                        <div class="row table-title">
+                            <div class="col-6">
+                                <span>Buy</span>
+                            </div>
+                            <div class="col-6">
+                                <span>Sell</span>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <table id="form-table-1" class="table col table-form">
                             </table>
