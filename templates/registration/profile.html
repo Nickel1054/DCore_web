@@ -12,21 +12,21 @@
                 <p class="fs-4 text-justify">You can now use the <a href={% url 'home-calc' %}>calculator</a>.</p>
             </div>
         </div>
-        <div class="row">
-            <div class="container">
-                <p class="fs-4 text-justify">
-                    Note: You have access to next data for extraction from our database:
-                </p>
-            </div>
-        </div>
+{#        <div class="row">#}
+{#            <div class="container">#}
+{#                <p class="fs-4 text-justify">#}
+{#                    Note: You have access to next data for extraction from our database:#}
+{#                </p>#}
+{#            </div>#}
+{#        </div>#}
         <div class="row">
             <div class="container">
                 <div class="list-group">
                     <ul class="user-operations">
-                        <a class="btn btn-light" href="{% url 'home' %}">Home</a><br>
-                        <a class="btn btn-light" href="{% url 'home-calc' %}">Calculator</a><br>
-                        <a class="btn btn-light" href="{% url 'password_change' %}">Change Password</a><br>
-                        <a class="btn btn-light" href="{% url 'logout' %}">Log Out</a><br>
+                        <a class="link-primary" href="{% url 'home' %}">Home</a><br>
+                        <a class="link-primary" href="{% url 'home-calc' %}">Calculator</a><br>
+                        <a class="link-primary" href="{% url 'password_change' %}">Change Password</a><br>
+                        <a class="link-primary" href="{% url 'logout' %}">Log Out</a><br>
                     </ul>
                 </div>
             </div>

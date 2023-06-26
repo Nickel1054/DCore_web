@@ -26,6 +26,11 @@ ul.nav {
     background-color: rgb(254, 209, 0);
 }
 
+ul.footer, div.footer{
+    opacity: 100%;
+}
+
+
 .nav-item a {
     color: black;
 }
@@ -39,6 +44,11 @@ ul.nav {
 span.helptext{
     color: #808080;
     font-size: small;
+}
+
+a.link-primary{
+    font-size: larger;
+    font-weight: bold;
 }
 
 #commodity-tr td.label-* {
@@ -90,3 +100,8 @@ span.select2-selection__rendered{
 /*    display: none;*/
 /*}*/
 
+
+footer a.link-danger span{
+    color: red;
+    font-weight: bolder;
+}

@@ -14,9 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import RedirectView
+from django.views.defaults import page_not_found
 from django.urls import path, include
 from django.contrib import admin
 from . import views
@@ -27,8 +29,12 @@ urlpatterns = [
     path('', views.HomePage.as_view(), name='home'),
     path('about/', views.AboutPage.as_view(), name='about'),
     path('documentation/', views.DocumentationPage.as_view(), name='doc'),
-    # path('accounts/login', views.LoginPage.as_view(), name='login'),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('calc/',  include('calculator.urls')),
+    path('calc/', include('calculator.urls')),
     path('accounts/profile/', login_required(views.ProfilePage.as_view()), name='profile'),
+
+    # path('accounts/', include('django.contrib.auth.urls')),
+    path("accounts/login/", LoginView.as_view(), name="login"),
+    path("accounts/logout/", LogoutView.as_view(), name="logout"),
+    path("accounts/password_change/", PasswordChangeView.as_view(), name="password_change"),
+    path("accounts/password_change/done/", PasswordChangeDoneView.as_view(), name="password_change_done",),
 ]
