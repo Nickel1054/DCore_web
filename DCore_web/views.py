@@ -10,12 +10,17 @@ import os
 from dotenv import load_dotenv
 import ast
 
+
 class HomePage(TemplateView):
     template_name = 'index.html'
 
 
 class AboutPage(TemplateView):
     template_name = 'about.html'
+
+
+class ContactsPage(TemplateView):
+    template_name = 'contacts.html'
 
 
 class DocumentationPage(TemplateView):

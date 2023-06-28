@@ -14,6 +14,10 @@ div.body-block{
     font-weight: bold;
 }
 
+tr.admin{
+    font-weight: bold;
+}
+
 #commodity-tr{
     font-size: large;
 }

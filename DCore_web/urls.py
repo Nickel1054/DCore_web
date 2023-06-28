@@ -29,6 +29,7 @@ urlpatterns = [
     path('', views.HomePage.as_view(), name='home'),
     path('about/', views.AboutPage.as_view(), name='about'),
     path('documentation/', views.DocumentationPage.as_view(), name='doc'),
+    path('contacts/', views.ContactsPage.as_view(), name='contacts'),
     path('calc/', include('calculator.urls')),
     path('accounts/profile/', login_required(views.ProfilePage.as_view()), name='profile'),
 

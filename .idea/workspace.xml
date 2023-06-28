@@ -5,13 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64013729-3444-4eeb-b777-d1d9c66219ea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/registration/password_change_done.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/calculator/js/calc_results.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/calc_results.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/contacts.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DCore_web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DCore_web/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DCore_web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DCore_web/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/templates/calculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/templates/calculator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/templates/result.html" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/templates/result.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/calculator/js/calc1.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/calculator/js/calc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/master.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/master.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,10 +29,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -263,7 +268,9 @@
       <workItem from="1686291011836" duration="9807000" />
       <workItem from="1686743423807" duration="22246000" />
       <workItem from="1687511440725" duration="12819000" />
-      <workItem from="1687773016840" duration="9326000" />
+      <workItem from="1687773016840" duration="10115000" />
+      <workItem from="1687845213740" duration="609000" />
+      <workItem from="1687931670987" duration="10212000" />
     </task>
     <servers />
   </component>
@@ -289,7 +296,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/DCore_web/views.py</url>
-          <line>51</line>
+          <line>56</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

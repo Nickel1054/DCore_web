@@ -1,0 +1,10 @@
+.hidden-results {
+    /*height: 0;*/
+    visibility: collapse;
+}
+
+.show-all-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
