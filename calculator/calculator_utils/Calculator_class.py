@@ -335,6 +335,8 @@ class Calculator:
         df = df.round(decimals=3)
         df.rename(columns={'trading_date': 'Trading Date', 'delta': 'Spread', 'delivery_year': 'Delivery Year'},
                   inplace=True)
+        df = df.sort_values(by='Trading Date', ascending=False)
+        df = df.reset_index(drop=True)
         return df, self.form_1['commodity'].upper() + '_spread_'
 
     def rename_df(self, df):

@@ -8,3 +8,18 @@
     align-items: center;
     justify-content: center;
 }
+
+#separator {
+    width: 100%;
+    height: 10px;
+    background-color: rgb(254, 209, 0);
+}
+
+div.empty {
+    width: 100%;
+    height: 50px;
+}
+
+div.table-title {
+    justify-content: center;
+}

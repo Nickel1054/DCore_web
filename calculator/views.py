@@ -3,9 +3,11 @@ from django.views.generic.edit import FormView
 from calculator.forms import CalculatorForm
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
-from .calculator_utils.Calculator_class import *
+from .calculator_utils import Calculator_class
+from .calculator_utils import SpreadVis
 from django.http import HttpResponse
 from io import BytesIO
+import pandas as pd
 import datetime
 import json
 
@@ -39,14 +41,12 @@ class CalculatorPage(FormView):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            df, excel_name = Calculator(form.cleaned_data).run()
+            df, excel_name = Calculator_class.Calculator(form.cleaned_data).run()
             request.session['data'] = df.to_json()
             request.session['excel_name'] = excel_name + datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-            # TODO add timezone
-            # <process form cleaned data>
+            graphs = SpreadVis.SpreadVis(df.copy()).run()
             print('REDIRECTING')
-            # return HttpResponseRedirect('success/')
-            return render(request, self.success_name, {"df": df})
+            return render(request, self.success_name, {"df": df, 'graphs': graphs})
 
         print('STAYING')
         return render(request, self.template_name, {"form": form})

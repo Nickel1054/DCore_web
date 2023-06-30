@@ -6,22 +6,76 @@
 
     <div class="h-100 p-5 bg-light border rounded-3">
         <div class="row">
-            <h1>RESULT</h1>
+            <h1>RESULTS</h1>
         </div>
-        <div class="row">
-            <p>Results here</p>
-            <table class="table visible-results" id="short-table">
-                <tr>
-                    {% for col in df.columns %}
-                        <th scope="col">
-                            {{ col }}
-                        </th>
-                    {% endfor %}
-                </tr>
+        <br>
+        <hr>
+        {% if graphs is not None %}
 
-                {% if df|length > 10 %}
-                    {% for index, row in df.iterrows %}
-                        {% if index < 3 %}
+            <div class="context-data">
+                <div class="row">
+                    <div class="graph">
+                        <img src="data:image/png;base64,{{ graphs }}" alt="graphs" width="100%">
+                        {#            {{ graphs|safe }}#}
+                    </div>
+                    <br>
+                    <div class="empty"></div>
+                    <div class="empty" id="separator"></div>
+                    <div class="empty"></div>
+                    <hr>
+                    <div class="table-title">
+                        <h2>Results in table</h2>
+                    </div>
+                    <table class="table visible-results" id="short-table">
+                        <tr>
+                            {% for col in df.columns %}
+                                <th scope="col">
+                                    {{ col }}
+                                </th>
+                            {% endfor %}
+                        </tr>
+
+                        {% if df|length > 10 %}
+                            {% for index, row in df.iterrows %}
+                                {% if index < 3 %}
+                                    <tr>
+                                        {% for cell in row %}
+                                            <td>
+                                                {{ cell }}
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            <tr>
+                                {% for column in df.columns %}
+                                    <td>...</td>
+                                {% endfor %}
+                            </tr>
+                            {#                {% endif %}#}
+                            {#                {% if df|length <= 10 %}#}
+                        {% else %}
+                            {% for index, row in df.iterrows %}
+                                <tr>
+                                    {% for cell in row %}
+                                        <td>
+                                            {{ cell }}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                    </table>
+                    <table class="table hidden-results" id="long-table">
+                        <tr>
+                            {% for col in df.columns %}
+                                <th scope="col">
+                                    {{ col }}
+                                </th>
+                            {% endfor %}
+                        </tr>
+                        {% for index, row in df.iterrows %}
                             <tr>
                                 {% for cell in row %}
                                     <td>
@@ -29,56 +83,28 @@
                                     </td>
                                 {% endfor %}
                             </tr>
-                        {% endif %}
-                    {% endfor %}
-                    <tr>
-                        {% for column in df.columns %}
-                            <td>...</td>
                         {% endfor %}
-                    </tr>
-                    {#                {% endif %}#}
-                    {#                {% if df|length <= 10 %}#}
-                {% else %}
-                    {% for index, row in df.iterrows %}
-                        <tr>
-                            {% for cell in row %}
-                                <td>
-                                    {{ cell }}
-                                </td>
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
-                {% endif %}
+                    </table>
+                </div>
 
-            </table>
-            <table class="table hidden-results" id="long-table">
-                <tr>
-                    {% for col in df.columns %}
-                        <th scope="col">
-                            {{ col }}
-                        </th>
-                    {% endfor %}
-                </tr>
-                {% for index, row in df.iterrows %}
-                    <tr>
-                        {% for cell in row %}
-                            <td>
-                                {{ cell }}
-                            </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <div class="row">
-            <div class="col-12 show-all-div">
-                <button class="btn btn-info" onclick="show_all()" id="show-all">Show All</button>
+                <div class="row">
+                    {% if df|length > 10 %}
+                        <div class="col-12 show-all-div">
+                            <button class="btn btn-info" onclick="show_all()" id="show-all">Show All</button>
+                        </div>
+                    {% endif %}
+                    <div class="col-0">
+                        <p>Total {{ df|length }} rows.</p>
+                    </div>
+                </div>
+                <a href="{% url 'download' %}"><input class="btn btn-primary" type="button" value="Download"></a>
             </div>
-            <div class="col-0">
-                <p>Total {{ df|length }} rows.</p>
+        {% else %}
+            <div class="no-context-data">
+                <h4 class="p-3 mb-2 bg-danger text-white">No Spread data available</h4>
             </div>
-        </div>
-        <a href="{% url 'download' %}"><input class="btn btn-primary" type="button" value="Download"></a>
+        {% endif %}
     </div>
+
 
 {% endblock %}

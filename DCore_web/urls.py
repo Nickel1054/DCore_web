@@ -39,3 +39,7 @@ urlpatterns = [
     path("accounts/password_change/", PasswordChangeView.as_view(), name="password_change"),
     path("accounts/password_change/done/", PasswordChangeDoneView.as_view(), name="password_change_done",),
 ]
+
+handler404 = "DCore_web.views.page_not_found_view_404"
+handler400 = "DCore_web.views.page_not_found_view"
+handler500 = "DCore_web.views.page_not_found_view_500"

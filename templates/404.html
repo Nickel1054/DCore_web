@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block body_block %}
+    {% load static %}
+    <div class="h-100 p-5 bg-light border rounded-3">
+        <h1 class="bg-danger text-white">Page Not Found</h1>
+        <div class="container" id="404">
+            <img src="{% static "img/404.jpg" %}" class="rounded mx-auto d-block" alt="Page Not Found" width="60%">
+        </div>
+    </div>
+
+{% endblock %}

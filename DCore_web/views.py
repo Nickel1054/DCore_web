@@ -1,9 +1,6 @@
-# from django.urls import reverse
-# from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
-from .forms import LoginForm
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 import os
@@ -38,20 +35,13 @@ class ProfilePage(UserPassesTestMixin, TemplateView):
         return any([self.request.user.username.endswith(i) for i in domains])
         # return self.request.user.username.endswith('@dtek.com')
 
-# class LogOutPage(TemplateView):
-#     template_name = 'registration/logged_out.html'
 
-# class LoginPage(TemplateView):
-#     form_class = LoginForm
-#     initial = {'email': 'Username@dtek.com'}
-#     template_name = 'registration/login.html'
-#
-#     def get(self, request, *args, **kwargs):
-#         form = self.form_class(initial=self.initial)
-#         return render(request, self.template_name, {'form': form})
-#
-#     def post(self, request,  *args, **kwargs):
-#         form = self.form_class(request.POST)
-#         if form.is_valid():
-#             print(kwargs)
-#             user = authenticate(username='john', password='secret')
+def page_not_found_view(request, exception):
+    return render(request, '404.html', status=400)
+
+
+def page_not_found_view_404(request, exception):
+    return render(request, '404.html', status=404)
+
+def page_not_found_view_500(request):
+    return render(request, '404.html', status=500)

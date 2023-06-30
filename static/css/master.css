@@ -4,25 +4,25 @@ body {
 }
 
 
-div.body-block{
+div.body-block {
     opacity: 90%;
 }
 
-.table-title{
+.table-title {
     text-align: center;
     font-size: large;
     font-weight: bold;
 }
 
-tr.admin{
+tr.admin {
     font-weight: bold;
 }
 
-#commodity-tr{
+#commodity-tr {
     font-size: large;
 }
 
-#id_commodity .select2-selection{
+#id_commodity .select2-selection {
     text-align: left;
 }
 
@@ -30,7 +30,7 @@ ul.nav {
     background-color: rgb(254, 209, 0);
 }
 
-ul.footer, div.footer{
+ul.footer, div.footer {
     opacity: 100%;
 }
 
@@ -45,21 +45,21 @@ ul.footer, div.footer{
 
 }
 
-span.helptext{
+span.helptext {
     color: #808080;
     font-size: small;
 }
 
-a.link-primary{
+a.link-primary {
     font-size: larger;
     font-weight: bold;
 }
 
-#commodity-tr td.label-* {
+#commodity-tr td.label- * {
     text-align: right;
 }
 
-td.label-*{
+td.label- * {
     width: 10%;
 }
 
@@ -67,25 +67,25 @@ td.label-*{
 /*    width: 10%;*/
 /*}*/
 
-.table-row-hidden{
+.table-row-hidden {
     display: none;
     height: 0;
 }
 
-select{
+select {
     width: 100%;
 }
 
-#form-table-* td.label-* {
+#form-table- * td.label- * {
     width: 50%;
 }
 
-td{
+td {
     height: 50px;
 }
 
 
-span.select2-selection__rendered{
+span.select2-selection__rendered {
     width: 2.5in;
 }
 
@@ -93,9 +93,10 @@ span.select2-selection__rendered{
     border-top: 0;
 }
 
-#form-table-1{
+#form-table-1 {
     border-right: 1px solid black;
 }
+
 /*#form-table-1 td span.select2-selection {*/
 /*    width: 100%;*/
 /*}*/
@@ -105,7 +106,14 @@ span.select2-selection__rendered{
 /*}*/
 
 
-footer a.link-danger span{
-    color: red;
-    font-weight: bolder;
+footer a.link-danger span {
+    /*color: red;*/
+    /*font-weight: bolder;*/
+}
+
+#404 img {
+    position:absolute;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
