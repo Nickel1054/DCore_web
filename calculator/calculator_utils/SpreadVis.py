@@ -96,7 +96,7 @@ class SpreadVis:
         # fig.savefig('fig1.png', bbox_inches=mtransforms.Bbox([[0, 0], [0.5, 0.25]]).transformed(
         #     (fig.transFigure - fig.dpi_scale_trans)))
 
-        fig.savefig('fig.png')
+        # fig.savefig('fig.png')
 
         return self.convert_to_data(fig)
 
