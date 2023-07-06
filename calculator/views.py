@@ -41,12 +41,12 @@ class CalculatorPage(FormView):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            df, excel_name = Calculator_class.Calculator(form.cleaned_data).run()
+            df, excel_name, data_pieces = Calculator_class.Calculator(form.cleaned_data).run()
             request.session['data'] = df.to_json()
             request.session['excel_name'] = excel_name + datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-            graphs = SpreadVis.SpreadVis(df.copy()).run()
+            # graphs = SpreadVis.SpreadVis(df.copy()).run()
             print('REDIRECTING')
-            return render(request, self.success_name, {"df": df, 'graphs': graphs})
+            return render(request, self.success_name, {"df": df, 'graphs': data_pieces})
 
         print('STAYING')
         return render(request, self.template_name, {"form": form})

@@ -330,6 +330,16 @@ class Calculator:
         df_2['trading_date'] = pd.to_datetime(df_2['trading_date'])
         df = self.merge_dfs(df_1, df_2)
         df = df[['trading_date', 'price_1', 'price_2', 'delta', 'delivery_year']]
+
+        data_pieces = {}
+        delivery_years = df['delivery_year'].unique().tolist()
+        delivery_years.sort()
+        df_temp = df.copy()
+        df_temp['trading_date'] = df_temp['trading_date'].astype(str)
+        for year in delivery_years:
+            data_pieces[year] = df_temp.loc[(df['delivery_year'] == year) & (df_temp['trading_date'].str[5:7] == '12')].drop(
+                columns='delivery_year').to_dict()
+
         df = self.rename_columns(df)
         df['trading_date'] = df['trading_date'].astype('str')
         df = df.round(decimals=3)
@@ -337,7 +347,9 @@ class Calculator:
                   inplace=True)
         df = df.sort_values(by='Trading Date', ascending=False)
         df = df.reset_index(drop=True)
-        return df, self.form_1['commodity'].upper() + '_spread_'
+
+
+        return df, self.form_1['commodity'].upper() + '_spread_', data_pieces
 
     def rename_df(self, df):
 

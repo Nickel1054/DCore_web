@@ -3,6 +3,9 @@
 {% block body_block %}
     <link href="{% static 'css/calc_results.css' %}" rel="stylesheet">
     <script src={% static 'calculator/js/calc_results.js' %}></script>
+    <script>
+        let dict_data = {{ graphs|safe }};
+    </script>
 
     <div class="h-100 p-5 bg-light border rounded-3">
         <div class="row">
@@ -14,9 +17,17 @@
 
             <div class="context-data">
                 <div class="row">
-                    <div class="graph">
-                        <img src="data:image/png;base64,{{ graphs }}" alt="graphs" width="100%">
-                        {#            {{ graphs|safe }}#}
+                    {#                    <div class="graph">#}
+                    {#                        <img src="data:image/png;base64,{{ graphs }}" alt="graphs" width="100%">#}
+                    {#            {{ graphs|safe }}#}
+                    {#                    </div>#}
+                    <div id="graphs" class="container graph">
+                        {% for key, values in graphs.items %}
+                            <div class="row graph-row">
+                                <div class="col-6 timedata" id="timedata-{{ key }}"></div>
+                                <div class="col-6 spreads" id="spreads-{{ key }}"></div>
+                            </div>
+                        {% endfor %}
                     </div>
                     <br>
                     <div class="empty"></div>
@@ -106,5 +117,9 @@
         {% endif %}
     </div>
 
+    <script src="{% static "calculator/js/amcharts5/index.js" %}"></script>
+    <script src="{% static "calculator/js/amcharts5/themes/Animated.js" %}"></script>
+    <script src="{% static "calculator/js/amcharts5/xy.js" %}"></script>
+    <script src="{% static "/calculator/js/chart.js" %}" type="module"></script>
 
 {% endblock %}
