@@ -335,9 +335,9 @@ class Calculator:
         delivery_years = df['delivery_year'].unique().tolist()
         delivery_years.sort()
         df_temp = df.copy()
-        df_temp['trading_date'] = df_temp['trading_date'].astype(str)
+        df_temp['trading_date'] = df_temp['trading_date'].astype(str)   #  & (df_temp['trading_date'].str[5:7] == '12')
         for year in delivery_years:
-            data_pieces[year] = df_temp.loc[(df['delivery_year'] == year) & (df_temp['trading_date'].str[5:7] == '12')].drop(
+            data_pieces[year] = df_temp.loc[(df['delivery_year'] == year)].drop(
                 columns='delivery_year').to_dict()
 
         df = self.rename_columns(df)

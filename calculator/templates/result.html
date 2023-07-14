@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load calc_extras %}
 {% block body_block %}
     <link href="{% static 'css/calc_results.css' %}" rel="stylesheet">
     <script src={% static 'calculator/js/calc_results.js' %}></script>
@@ -17,17 +18,23 @@
 
             <div class="context-data">
                 <div class="row">
-                    {#                    <div class="graph">#}
-                    {#                        <img src="data:image/png;base64,{{ graphs }}" alt="graphs" width="100%">#}
-                    {#            {{ graphs|safe }}#}
-                    {#                    </div>#}
                     <div id="graphs" class="container graph">
+
                         {% for key, values in graphs.items %}
                             <div class="row graph-row">
-                                <div class="col-6 timedata" id="timedata-{{ key }}"></div>
-                                <div class="col-6 spreads" id="spreads-{{ key }}"></div>
+                                <h2 class="graph-title">Delivery year - {{ key }}</h2>
+                                <h3 class="graph-title">SELL: {{ df|get_sell }}</h3>
+                                <h3 class="graph-title">BUY: {{ df|get_buy }}</h3>
+                                <div class="col-6">
+                                    <div class="timedata" id="timedata-{{ key }}"></div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="col-6 spreads" id="spreads-{{ key }}"></div>
+                                </div>
                             </div>
+                            <hr class="graphs-separate">
                         {% endfor %}
+
                     </div>
                     <br>
                     <div class="empty"></div>
@@ -121,5 +128,6 @@
     <script src="{% static "calculator/js/amcharts5/themes/Animated.js" %}"></script>
     <script src="{% static "calculator/js/amcharts5/xy.js" %}"></script>
     <script src="{% static "/calculator/js/chart.js" %}" type="module"></script>
+    <link href="{% static 'css/charts.css' %}" rel="stylesheet">
 
 {% endblock %}

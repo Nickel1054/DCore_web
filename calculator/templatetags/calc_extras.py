@@ -1,3 +1,4 @@
+import pandas as pd
 from django import template
 
 register = template.Library()
@@ -31,3 +32,17 @@ def remove_number(value: str):
 @register.filter(is_safe=True, name='get_column_number')
 def get_column_number(value: str):
     return value.rsplit('_', 1)[-1]
+
+
+@register.filter(is_safe=True, name='get_sell')
+def get_sell(value: pd.DataFrame):
+    return [col for col in value.columns if 'SELL' in col][0].replace('SELL', '')
+
+
+@register.filter(is_safe=True, name='get_buy')
+def get_buy(value: pd.DataFrame):
+    return [col for col in value.columns if 'SELL' in col][0].replace('SELL', '')
+
+
+if __name__ == '__main__':
+    get_sell(pd.DataFrame({'column_BUY': [0, 1, 2, 5], 'column2_SELL': [5, 6, 97, 8]}))

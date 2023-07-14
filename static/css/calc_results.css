@@ -23,3 +23,15 @@ div.empty {
 div.table-title {
     justify-content: center;
 }
+
+h2.graph-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+h3.graph-title {
+    text-align: center;
+}
+
+
+/*TODO merge with master. add titles, legend and fix design*/
