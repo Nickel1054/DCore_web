@@ -23,12 +23,14 @@
                         {% for key, values in graphs.items %}
                             <div class="row graph-row">
                                 <h2 class="graph-title">Delivery year - {{ key }}</h2>
-                                <h3 class="graph-title">SELL: {{ df|get_sell }}</h3>
                                 <h3 class="graph-title">BUY: {{ df|get_buy }}</h3>
+                                <h3 class="graph-title">SELL: {{ df|get_sell }}</h3>
                                 <div class="col-6">
+                                    <h4 class="graph-title">Timedata</h4>
                                     <div class="timedata" id="timedata-{{ key }}"></div>
                                 </div>
                                 <div class="col-6">
+                                    <h4 class="graph-title">Spreads</h4>
                                     <div class="col-6 spreads" id="spreads-{{ key }}"></div>
                                 </div>
                             </div>
@@ -115,7 +117,7 @@
                         <p>Total {{ df|length }} rows.</p>
                     </div>
                 </div>
-                <a href="{% url 'download' %}"><input class="btn btn-primary" type="button" value="Download"></a>
+                <a href="{% url 'download' %}"><input class="btn btn-primary" type="button" value="Download Excel"></a>
             </div>
         {% else %}
             <div class="no-context-data">

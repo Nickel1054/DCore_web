@@ -1,20 +1,164 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block body_block %}
 
     <div class="h-100 p-5 bg-light border rounded-3">
         <h1>Documentation</h1><br>
         <div class="row">
             <div class="col-12">
-                <p class="fs-4 text-justify">Fill text
-                </p>
-                <hr>
-                <p>
-                    TODO
-                </p>
-                <p>
-                    TODO
-                </p>
+                <div>
+                    <h2>D.Core Spread Calculator</h2>
+                    <p class="fs-4 text-justify">Our project was built to provide efficient up-to-date information on
+                        spreads of different commodities for D.Trading employees and clients. It provides visual data,
+                        data in table form on web page, and an option to download data on selected spread as an Excel
+                        file.
+                    </p>
+                    <hr>
+                    <br>
+                </div>
+                <div>
+                    <h2>Registration</h2>
+                    <p class="fs-4 text-justify">
+                        This site can be viewed by an unauthorized user, however you cannot use spreads calculator
+                        unless you are logged in. To get an account, one should contact our team with the request for
+                        a new account. When your request is processed, a new account will be created, and you will
+                        receive a confirmation email.
+                    </p>
+                    <p>
+                        Note: You can only get an account if you have d.trading or dtek.com domain email. <br>
+                        E.g. UsernameNN@dtek.com, usernamenn@d.trading .
+                    </p>
+                    <a class="btn btn-outline-primary"
+                       href="mailto:PekarskyiYV@dtek.com&cc=ManzheliiBO@dtek.com?subject=Dcore Registration"><span>Contact to Register</span></a>
+                    <hr>
+                    <br>
+                </div>
+                <div>
+                    <h2>Logging In</h2>
+                    <p class="fs-4 text-justify">
+                        In a confirmation email, stating you have an account created, you will find log-in credentials.
+                        You should use them to log in on our <a href="{% url 'login' %}">Log in</a> page.
+                    </p>
+                    <p class="fs-4 text-justify">
+                        <b>WARNING!</b> It is highly recommended to <a href="{% url 'password_change' %}">change</a>
+                        your password immediately upon your first log in.
+                    </p>
+                    <hr>
+                    <br>
+                </div>
+                <div>
+                    <h2>Calculator Form</h2>
+                    <p class="fs-4 text-justify">
+                        After logging in you can proceed to use the calculator. You may click "Calculator" link on the
+                        navigation bar
+                        on the top of the page or just follow this <a href="{% url 'home-calc' %}">link</a>.
+                        This way you will land on a page with a form, which you need to fill out to receive the data
+                        about
+                        the spread you need.
+                    </p>
+                    <p class="fs-4 text-justify">
+                        The starting page will look like this:
+                    </p>
+                    <img class="img-fluid" src="{% static 'img/docs/screenshot_commodity.png' %}" alt="commodity-img">
+                    <br>
+                    <br>
+                    <p class="fs-4 text-justify">
+                        As you can see, the first required item you need to fill out is the Commodity. After each filled
+                        item in form, next corresponding item will appear. For example, if you choose <i>Gas</i> as a
+                        Commodity, two fields will appear in <i>Buy</i> and <i>Sell</i> columns, named <i>Gas Source</i>,
+                        with gas source variants of answer. <br>
+                        And if you choose <i>Electricity futures</i>, similarly, two fields will appear in
+                        <i>Buy</i> and <i>Sell</i> columns, named <i>Gas Source</i>, with gas source variants of answer.
+                    </p>
+                    <br>
+                    <p class="fs-4 text-justify">
+                        Every form field allows you to search the item you need, as shown on the image:
+                    </p>
+                    <img class="img-fluid" src="{% static 'img/docs/screenshot_search.png' %}" alt="search-img">
+                    <br>
+                    <br>
+                    <p class="fs-4 text-justify">
+                        Note that there is a required number of fields that you need to fill out. Otherwise, the form
+                        will not be full and the request cannot be made. To prevent errors, the <b>Submit</b> button
+                        is unavailable until the form is fully filled. Make sure you have all the necessary fields
+                        filled
+                        to proceed. If you have troubles with the form, you can always click <b>Reset From</b> button.
+                    </p>
+                    <hr>
+                </div>
+                <div>
+                    <h2>Results</h2>
+                    <p class="fs-4 text-justify">
+                        The results are shown for every available delivery year (usually from 2019 to current). To
+                        determine
+                        which product the datapoint corresponds to we provide the <b>Delivery Year</b> field in data.
+                        This way, if a user requested spread, one of the products of which is June 2023, Calculator
+                        will provide data for products of June 2019, June 2020, June 2021, June 2022, June 2023. It
+                        allows user to compare spreads of different years. <br><br>
+                        Results page is divided into three parts, as shown on the image below:
+                    </p>
+                    <img class="img-fluid mx-auto d-block " src="{% static 'img/docs/screenshot_result.png' %}"
+                         alt="result-img">
+                    <br><br>
+                    <h3>1. Result plots</h3>
+                    <p class="fs-4 text-justify">
+                        Our project allows us to see the requested data in a form of graphs. They are dynamic,
+                        you can expand or reduce the x-coordinate (Trading Date) and on hover over the data
+                        you can see the values on any specific date. Read more on next part of documentation "The
+                        plots".
+                    </p>
+                    <h3>2. Table of results</h3>
+                    <p class="fs-4 text-justify">
+                        You can also view the data in a form of a table. It is not very convenient, but allows user to
+                        have a brief look on the data if one needs to. We recommend to use the next part of results to
+                        get the data in a form of table.
+                    </p>
+                    <h3>3. Download Excel file</h3>
+                    <p class="fs-4 text-justify">
+                        We provide the opportunity for our users to get the spread data in a convenient and familiar
+                        form - Excel table. Clicking <b>Download Excel</b> will trigger your browser to download the
+                        requested data in .xlsx file in desired or pre-defined directory on your computer (depends on a
+                        web browser you are using).
+                    </p>
+                    <hr>
+                </div>
+                <div>
+                    <h2>The Plots</h2>
+                    <p class="fs-4 text-justify">
+                        The Plots part of results page is divided dy rows, which correspond with delivery year of a
+                        product.
+                        Each row is also divided by two columns. </p>
+                    <p class="fs-4 text-justify">
+                        The first plot in a row (the first column) shows a plot of
+                        timeseries, where on x-Axis there is <b>Trading Date</b> and on y-Axis there is <b>Price</b>
+                        (Settlement).
+                    </p>
+                    <p class="fs-4 text-justify">
+                        The second plot in a row shows a plot of
+                        spreads, where on x-Axis there is <b>Trading Date</b> and on y-Axis there is <b>Spread</b>.
+                        Here we define spread as a price difference between two products: <br> Spread = BUY - SELL.
+                    </p>
+                    <p class="fs-4 text-justify">
+                        You can see the example of division on the image:
+                    </p>
+                    <img class="img-fluid mx-auto d-block " src="{% static 'img/docs/screenshot_graphs.png' %}"
+                         alt="plot-img">
+                    <br><br>
+                    <p class="fs-4 text-justify">
+                        On this example the first row is the <b>Delivery Year</b> 2021, second - <b>Delivery Year</b> 2022,
+                        and the third - <b>Delivery Year</b> 2023.
+                    </p>
+                    <hr>
+                    <br>
+                </div>
+                <div>
+                    <h2>Feedback</h2>
+                    <p class="fs-4 text-justify">
+                        Feel free to visit the <a href="{% url 'contacts' %}">Contact Us</a> page to send us your
+                        improvement ideas and other feedback. You can also click <b>Report a Problem</b> link at the
+                        bottom of a page to send a complaint or performance remarks to the developers anytime.
+                    </p>
+                </div>
             </div>
         </div>
     </div>

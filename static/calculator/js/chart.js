@@ -80,16 +80,17 @@ function create_timedata_graph(year, data) {
     }));
 
 
-// Add series
+
+
 // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
     var series = chart.series.push(am5xy.LineSeries.new(roots_timedata[year], {
-        name: "Series 1",
+        name: "BUY",
         xAxis: xAxis,
         yAxis: yAxis,
         valueYField: "value1",
         valueXField: "date",
         tooltip: am5.Tooltip.new(roots_timedata[year], {
-            labelText: "{valueX}: {valueY}\n{previousDate}: {value2}"
+            labelText: "BUY: {valueY}\nSELL: {value2}"
         }),
         stroke: am5.color('#00f')
     }));
@@ -100,14 +101,16 @@ function create_timedata_graph(year, data) {
 
     series.get("tooltip").get("background").set("fillOpacity", 0.5);
 
+    // Add series
     var series2 = chart.series.push(am5xy.LineSeries.new(roots_timedata[year], {
-        name: "Series 2",
+        name: "SELL",
         xAxis: xAxis,
         yAxis: yAxis,
         valueYField: "value2",
         valueXField: "date",
         stroke: am5.color('#f00')
     }));
+
     series2.strokes.template.setAll({
         // strokeDasharray: [2, 2],
         strokeWidth: 2
@@ -119,8 +122,19 @@ function create_timedata_graph(year, data) {
         dateFormat: "yyyy-MM-dd",
         dateFields: ["valueX"]
     });
+
+    let legend = chart.children.push(am5.Legend.new(roots_timedata[year], {
+        x: am5.percent(22),
+        centerX: am5.percent(50),
+        markerLabelGap: 80,
+        layout: roots_timedata[year].verticalLayout
+    }));
+    legend.data.setAll(chart.series.values);
+
     series.data.setAll(data);
     series2.data.setAll(data);
+
+    roots_timedata[year]._logo.dispose();
 }
 
 function create_spread_graph(year, data_spreads) {
@@ -177,7 +191,7 @@ function create_spread_graph(year, data_spreads) {
         valueYField: "value",
         valueXField: "date",
         tooltip: am5.Tooltip.new(roots_spreads[year], {
-            labelText: "{valueX}: {valueY}\n{previousDate}: {value2}"
+            labelText: "Spread: {valueY}"
         }),
         // stroke: am5.color('#00f')
     }));
@@ -221,13 +235,15 @@ function create_spread_graph(year, data_spreads) {
 
     series_spread.appear(1000);
     chart.appear(1000, 100);
+
+    roots_spreads[year]._logo.dispose();
 }
 
 
 for (const year in dict_data) {
-    if (parseInt(year) < 2019) {
-        continue;
-    }
+    // if (parseInt(year) < 2019) {
+    //     continue;
+    // }
     console.log(year);
 
     // console.log('data1', data_timedata);
@@ -246,7 +262,6 @@ for (const year in dict_data) {
 // https://www.amcharts.com/docs/v5/concepts/animations/
 
 
-//     TODO generate data from dict_data
 }
 
 // var root = am5.Root.new("chartdiv");

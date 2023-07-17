@@ -29,9 +29,7 @@ h2.graph-title {
     font-weight: bold;
 }
 
-h3.graph-title {
+.graph-title {
     text-align: center;
 }
 
-
-/*TODO merge with master. add titles, legend and fix design*/

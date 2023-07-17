@@ -47,7 +47,7 @@
                         {% endif %}
                         <tr id="{{ field.html_name|remove_number }}_tr_{{ field.html_name|get_column_number }}"
                             class="table-row-hidden  tr-column-{{ field.html_name|get_column_number }} row-{{ field.html_name|split_class }}">
-                            <td class="label-{{ field.html_name|get_column_number }}">{{ field.label_tag }}</td>
+                            <td class="label-{{ field.html_name|get_column_number }}">{{ field.label_tag|get_label }}</td>
                             <td class="column-{{ field.html_name|get_column_number }}">{{ field }}</td>
                         </tr>
                     {% endif %}

@@ -339,6 +339,8 @@ class Calculator:
         for year in delivery_years:
             data_pieces[year] = df_temp.loc[(df['delivery_year'] == year)].drop(
                 columns='delivery_year').to_dict()
+        if not len(data_pieces):
+            data_pieces = None
 
         df = self.rename_columns(df)
         df['trading_date'] = df['trading_date'].astype('str')
@@ -347,7 +349,6 @@ class Calculator:
                   inplace=True)
         df = df.sort_values(by='Trading Date', ascending=False)
         df = df.reset_index(drop=True)
-
 
         return df, self.form_1['commodity'].upper() + '_spread_', data_pieces
 
